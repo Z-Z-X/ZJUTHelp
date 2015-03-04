@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\libs\jsoup-1.8.1.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="3d57e95c0f150b885ccdbda7a12bef353fd31d02">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\jsoup-1.8.1-691552b3710d2057eb677f279561c23080669620.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-b4eebf683b71d527cc208eda4a9ee60d943a2990.jar" />
+    </item>
+    <item
+        jar="C:\Program Files\adt-bundle-windows-x86_64-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-7ddf422bf9eb2a77b32d3b618b7ad6a60a62373c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-a5d551d3a0d078d4477b3baf00c1634929ecaf6b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-5268831c24d6300487df66e42983d30654e911da.jar" />
+    </item>
+
+</items>
