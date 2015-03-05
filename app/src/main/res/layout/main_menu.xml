@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/item_news"
         android:paddingTop="@dimen/menu_item_padding_vertical"
         android:paddingBottom="@dimen/menu_item_padding_vertical"
         android:orientation="horizontal"
@@ -30,6 +31,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/item_library"
         android:paddingTop="@dimen/menu_item_padding_vertical"
         android:paddingBottom="@dimen/menu_item_padding_vertical"
         android:orientation="horizontal"
@@ -53,6 +55,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/item_teaching_affairs"
         android:paddingTop="@dimen/menu_item_padding_vertical"
         android:paddingBottom="@dimen/menu_item_padding_vertical"
         android:orientation="horizontal"
@@ -81,6 +84,7 @@
         android:background="?android:attr/listDivider" />
 
     <LinearLayout
+        android:id="@+id/item_settings"
         android:paddingTop="@dimen/menu_item_padding_vertical"
         android:paddingBottom="@dimen/menu_item_padding_vertical"
         android:orientation="horizontal"

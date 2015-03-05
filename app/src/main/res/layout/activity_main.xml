@@ -22,16 +22,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!--主布局-->
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/page"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!--fragment
-                class="com.zjut.zjuthelp.Fragments.NewsFragment"
-                android:id="@+id/page"
-                android:layout_gravity="start"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/-->
-        </LinearLayout>
+        </FrameLayout>
         <!--侧滑菜单-->
         <include layout="@layout/main_menu"/>
 
