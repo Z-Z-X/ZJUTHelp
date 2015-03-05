@@ -2,6 +2,7 @@ package com.zjut.zjuthelp;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,7 +17,12 @@ import com.zjut.zjuthelp.Fragments.NewsFragment;
 import com.zjut.zjuthelp.Fragments.SettingsFragment;
 import com.zjut.zjuthelp.Fragments.TeachingAffairsFragment;
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener{
+public class MainActivity extends ActionBarActivity
+        implements View.OnClickListener,
+        NewsFragment.OnFragmentInteractionListener,
+        LibraryFragment.OnFragmentInteractionListener,
+        TeachingAffairsFragment.OnFragmentInteractionListener,
+        SettingsFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -65,18 +71,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //开启关闭菜单
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close) {
-            String appTitle;
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                appTitle = getTitle().toString();
-                setTitle(getResources().getString(R.string.app_name));
-            }
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                setTitle(appTitle);
-            }
-        };
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerToggle.syncState();
         drawerLayout.setDrawerListener(drawerToggle);
 
@@ -88,27 +83,58 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+        hideFragment(transaction);
         resetMenu();
         switch (v.getId()) {
             case R.id.item_news:
                 setTitle(R.string.news);
                 itemNews.setBackgroundColor(getResources().getColor(R.color.colorLight));
+                if (newsFragment == null) {
+                    newsFragment = new NewsFragment();
+                    transaction.add(R.id.page, newsFragment);
+                } else {
+                    transaction.show(newsFragment);
+                }
                 break;
             case R.id.item_library:
                 setTitle(R.string.library);
                 itemLibrary.setBackgroundColor(getResources().getColor(R.color.colorLight));
+                if (libraryFragment == null) {
+                    libraryFragment = new LibraryFragment();
+                    transaction.add(R.id.page, libraryFragment);
+                } else {
+                    transaction.show(libraryFragment);
+                }
                 break;
             case R.id.item_teaching_affairs:
                 setTitle(R.string.teaching_affairs);
                 itemTeachingAffairs.setBackgroundColor(getResources().getColor(R.color.colorLight));
+                if (teachingAffairsFragment == null) {
+                    teachingAffairsFragment = new TeachingAffairsFragment();
+                    transaction.add(R.id.page, teachingAffairsFragment);
+                } else {
+                    transaction.show(teachingAffairsFragment);
+                }
                 break;
             case R.id.item_settings:
                 setTitle(R.string.settings);
                 itemSettings.setBackgroundColor(getResources().getColor(R.color.colorLight));
+                if (settingsFragment == null) {
+                    settingsFragment = new SettingsFragment();
+                    transaction.add(R.id.page, settingsFragment);
+                } else {
+                    transaction.show(settingsFragment);
+                }
                 break;
         }
+        transaction.commit();
         drawerLayout.closeDrawers();
     }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    };
 
     //Reset Menu
     private void resetMenu() {
@@ -118,5 +144,20 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         itemSettings.setBackgroundColor(getResources().getColor(R.color.colorWhite));
     }
 
-    //Hide Fragement
+    //Hide Fragment
+    private void hideFragment(FragmentTransaction transaction) {
+        if (newsFragment != null) {
+            transaction.hide(newsFragment);
+        }
+        if (libraryFragment != null) {
+            transaction.hide(libraryFragment);
+        }
+        if (teachingAffairsFragment != null) {
+            transaction.hide(teachingAffairsFragment);
+        }
+        if (settingsFragment != null) {
+            transaction.hide(settingsFragment);
+        }
+    }
+
 }
