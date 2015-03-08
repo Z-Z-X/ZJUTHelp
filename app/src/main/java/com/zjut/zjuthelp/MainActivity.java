@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.zjut.zjuthelp.Fragments.CircleFragment;
 import com.zjut.zjuthelp.Fragments.LibraryFragment;
 import com.zjut.zjuthelp.Fragments.NewsFragment;
 import com.zjut.zjuthelp.Fragments.SettingsFragment;
@@ -22,7 +23,8 @@ public class MainActivity extends ActionBarActivity
         NewsFragment.OnFragmentInteractionListener,
         LibraryFragment.OnFragmentInteractionListener,
         TeachingAffairsFragment.OnFragmentInteractionListener,
-        SettingsFragment.OnFragmentInteractionListener{
+        SettingsFragment.OnFragmentInteractionListener,
+        CircleFragment.OnFragmentInteractionListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -32,12 +34,14 @@ public class MainActivity extends ActionBarActivity
 
     //主菜单控件
     private LinearLayout itemNews;
+    private LinearLayout itemCircle;
     private LinearLayout itemLibrary;
     private LinearLayout itemTeachingAffairs;
     private LinearLayout itemSettings;
 
     //页面
     private NewsFragment newsFragment;
+    private CircleFragment circleFragment;
     private LibraryFragment libraryFragment;
     private TeachingAffairsFragment teachingAffairsFragment;
     private SettingsFragment settingsFragment;
@@ -53,11 +57,13 @@ public class MainActivity extends ActionBarActivity
         drawerLayout = (DrawerLayout)findViewById(R.id.main_drawer);
         //初始化菜单中的项目
         itemNews = (LinearLayout)findViewById(R.id.item_news);
+        itemCircle = (LinearLayout)findViewById(R.id.item_circle);
         itemLibrary = (LinearLayout)findViewById(R.id.item_library);
         itemTeachingAffairs = (LinearLayout)findViewById(R.id.item_teaching_affairs);
         itemSettings = (LinearLayout)findViewById(R.id.item_settings);
         //事件处理
         itemNews.setOnClickListener(this);
+        itemCircle.setOnClickListener(this);
         itemLibrary.setOnClickListener(this);
         itemTeachingAffairs.setOnClickListener(this);
         itemSettings.setOnClickListener(this);
@@ -94,6 +100,16 @@ public class MainActivity extends ActionBarActivity
                     transaction.add(R.id.page, newsFragment);
                 } else {
                     transaction.show(newsFragment);
+                }
+                break;
+            case R.id.item_circle:
+                setTitle(R.string.circle);
+                itemCircle.setBackgroundColor(getResources().getColor(R.color.colorLight));
+                if (circleFragment == null) {
+                    circleFragment = new CircleFragment();
+                    transaction.add(R.id.page, circleFragment);
+                } else {
+                    transaction.show(circleFragment);
                 }
                 break;
             case R.id.item_library:
@@ -139,6 +155,7 @@ public class MainActivity extends ActionBarActivity
     //Reset Menu
     private void resetMenu() {
         itemNews.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+        itemCircle.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemLibrary.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemTeachingAffairs.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemSettings.setBackgroundColor(getResources().getColor(R.color.colorWhite));
@@ -148,6 +165,9 @@ public class MainActivity extends ActionBarActivity
     private void hideFragment(FragmentTransaction transaction) {
         if (newsFragment != null) {
             transaction.hide(newsFragment);
+        }
+        if (circleFragment != null) {
+            transaction.hide(circleFragment);
         }
         if (libraryFragment != null) {
             transaction.hide(libraryFragment);

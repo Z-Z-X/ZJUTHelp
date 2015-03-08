@@ -9,9 +9,14 @@
 
     <string name="home_page">主页</string>
     <string name="news">资讯</string>
+    <string name="notification">校内通知</string>
+    <string name="circle">圈圈</string>
     <string name="library">图书馆</string>
     <string name="teaching_affairs">教务处</string>
     <string name="settings">设置</string>
+    <string name="student_id">学号</string>
+    <string name="library_password">图书馆密码</string>
+    <string name="teaching_affairs_password">教务处密码</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

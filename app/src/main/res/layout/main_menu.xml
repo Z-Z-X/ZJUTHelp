@@ -31,6 +31,30 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/item_circle"
+        android:paddingTop="@dimen/menu_item_padding_vertical"
+        android:paddingBottom="@dimen/menu_item_padding_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:background="@drawable/ic_event_note_grey"
+            android:layout_width="@dimen/menu_icon"
+            android:layout_height="@dimen/menu_icon" />
+
+        <TextView
+            android:layout_gravity="center"
+            android:textSize="@dimen/abc_text_size_menu_material"
+            android:text="@string/circle"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/item_library"
         android:paddingTop="@dimen/menu_item_padding_vertical"
         android:paddingBottom="@dimen/menu_item_padding_vertical"
