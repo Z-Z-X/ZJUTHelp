@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/accounts">
+        <EditTextPreference
+            android:key="student_id_preference"
+            android:title="@string/student_id"
+            android:summary="@string/student_id"
+            android:dialogTitle="@string/edit_student_id" />
+        <EditTextPreference
+            android:key="library_password_preference"
+            android:title="@string/library_password"
+            android:summary="@string/edit_library_password"
+            android:dialogTitle="@string/edit_library_password" />
+        <EditTextPreference
+            android:key="teaching_affairs_password_preference"
+            android:title="@string/teaching_affairs_password"
+            android:summary="@string/edit_teaching_affairs_password"
+            android:dialogTitle="@string/edit_teaching_affairs_password" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

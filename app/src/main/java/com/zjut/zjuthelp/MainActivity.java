@@ -12,9 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.zjut.zjuthelp.Fragments.BorrowRecordsFragment;
 import com.zjut.zjuthelp.Fragments.CircleFragment;
+import com.zjut.zjuthelp.Fragments.HistorykFragment;
 import com.zjut.zjuthelp.Fragments.LibraryFragment;
 import com.zjut.zjuthelp.Fragments.NewsFragment;
+import com.zjut.zjuthelp.Fragments.NewsListFragment;
 import com.zjut.zjuthelp.Fragments.SettingsFragment;
 import com.zjut.zjuthelp.Fragments.TeachingAffairsFragment;
 
@@ -24,7 +27,10 @@ public class MainActivity extends ActionBarActivity
         LibraryFragment.OnFragmentInteractionListener,
         TeachingAffairsFragment.OnFragmentInteractionListener,
         SettingsFragment.OnFragmentInteractionListener,
-        CircleFragment.OnFragmentInteractionListener {
+        CircleFragment.OnFragmentInteractionListener,
+        NewsListFragment.OnFragmentInteractionListener,
+        BorrowRecordsFragment.OnFragmentInteractionListener,
+        HistorykFragment.OnFragmentInteractionListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;

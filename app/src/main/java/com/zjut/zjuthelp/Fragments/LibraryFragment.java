@@ -4,11 +4,16 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.zjut.zjuthelp.R;
+import com.zjut.zjuthelp.Web.ZJUTNews;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -105,6 +110,24 @@ public class LibraryFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        //Fragment初始化
+        ViewPager viewPager = (ViewPager)getActivity().findViewById(R.id.view_pager_library);
+        ArrayList<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(new BorrowRecordsFragment());
+        fragmentList.add(new HistorykFragment());
+        ArrayList<String> titleList = new ArrayList<>();
+        titleList.add(getResources().getString(R.string.borrow_record));
+        titleList.add(getResources().getString(R.string.history));
+        viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(),fragmentList, titleList));
+        //TabStrip初始化
+        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip)getActivity().findViewById(R.id.pager_tab_library);
+        pagerSlidingTabStrip.setViewPager(viewPager);
     }
 
 }

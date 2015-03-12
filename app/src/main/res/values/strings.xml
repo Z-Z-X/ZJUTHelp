@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">工大助手</string>
+    <string name="app_name">工大校园</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -10,13 +10,21 @@
     <string name="home_page">主页</string>
     <string name="news">资讯</string>
     <string name="notification">校内通知</string>
+    <string name="zjuter">工大人</string>
+    <string name="travel_and_food">吃在路上</string>
     <string name="circle">圈圈</string>
     <string name="library">图书馆</string>
+    <string name="borrow_record">当前借阅</string>
+    <string name="history">借阅历史</string>
     <string name="teaching_affairs">教务处</string>
     <string name="settings">设置</string>
+    <string name="accounts">账户</string>
     <string name="student_id">学号</string>
-    <string name="library_password">图书馆密码</string>
-    <string name="teaching_affairs_password">教务处密码</string>
+    <string name="edit_student_id">编辑学号</string>
+    <string name="library_password">图书馆系统密码</string>
+    <string name="edit_library_password">编辑图书馆系统密码</string>
+    <string name="teaching_affairs_password">教务系统密码</string>
+    <string name="edit_teaching_affairs_password">编辑教务系统密码</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

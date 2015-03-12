@@ -9,6 +9,20 @@
         <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\jsoup-1.8.1-691552b3710d2057eb677f279561c23080669620.jar" />
     </item>
     <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-5268831c24d6300487df66e42983d30654e911da.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="0dcc55e70f7ebf7238fe2ec53f662eb378ab2668">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-16d34c8fc9a6b8d60a627dd38917f5cafa8d1b7a.jar" />
+    </item>
+    <item
         jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="20.0.0"
@@ -23,6 +37,13 @@
         <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-7ddf422bf9eb2a77b32d3b618b7ad6a60a62373c.jar" />
     </item>
     <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="7912610ed96381c25c36d986eba422731b9641b6">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-406a238f2c4f9155a73911e53d3240a74a79747a.jar" />
+    </item>
+    <item
         jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
         jumboMode="false"
         revision="20.0.0"
@@ -30,11 +51,11 @@
         <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-a5d551d3a0d078d4477b3baf00c1634929ecaf6b.jar" />
     </item>
     <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.3\classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-5268831c24d6300487df66e42983d30654e911da.jar" />
+        sha1="2c2071dcaf7a008c3b01a6381a33be55396bab09">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-45aa436927ffcd01428a5c7ebcde54830f5c17f2.jar" />
     </item>
 
 </items>

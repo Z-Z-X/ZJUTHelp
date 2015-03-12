@@ -8,6 +8,7 @@
 
     <LinearLayout
         android:id="@+id/item_news"
+        android:layout_marginTop="@dimen/menu_item_padding_vertical"
         android:paddingTop="@dimen/menu_item_padding_vertical"
         android:paddingBottom="@dimen/menu_item_padding_vertical"
         android:orientation="horizontal"

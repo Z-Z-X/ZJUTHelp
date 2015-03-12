@@ -3,19 +3,31 @@
     android:layout_height="match_parent"
     tools:context="com.zjut.zjuthelp.Fragments.LibraryFragment">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/ViewPager"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
-        <android.support.v4.view.PagerTabStrip
-            android:id="@+id/PagerTab"
+        android:layout_height="match_parent">
+
+        <com.astuetz.PagerSlidingTabStrip
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pager_tab_library"
+            android:textSize="@dimen/abc_text_size_subtitle_material_toolbar"
             android:background="@color/colorPrimary"
+            app:pstsDividerColor="@color/colorPrimary"
             android:textColor="@color/colorWhite"
+            app:pstsIndicatorColor="@color/colorWhite"
+            app:pstsIndicatorHeight="@dimen/indicator_height"
+            app:pstsUnderlineHeight="0sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top">
-        </android.support.v4.view.PagerTabStrip>
-    </android.support.v4.view.ViewPager>
+            android:layout_height="@dimen/abc_action_bar_default_height_material"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager_library"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
 
 </FrameLayout>
