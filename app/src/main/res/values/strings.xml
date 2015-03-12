@@ -25,6 +25,7 @@
     <string name="edit_library_password">编辑图书馆系统密码</string>
     <string name="teaching_affairs_password">教务系统密码</string>
     <string name="edit_teaching_affairs_password">编辑教务系统密码</string>
+    <string name="about">关于</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
