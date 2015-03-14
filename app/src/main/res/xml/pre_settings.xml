@@ -20,4 +20,11 @@
             android:dialogTitle="@string/edit_teaching_affairs_password" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="关于">
+        <Preference
+            android:key="open_source_licence"
+            android:title="@string/open_source_licence"/>
+    </PreferenceCategory>
+
 </PreferenceScreen>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.zjut.zjuthelp.Adapter.MyFragmentPagerAdapter;
 import com.zjut.zjuthelp.R;
 import com.zjut.zjuthelp.Web.ZJUTNews;
 

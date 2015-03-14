@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.zjut.zjuthelp.Fragments.AboutFragment;
 import com.zjut.zjuthelp.Fragments.BorrowRecordsFragment;
 import com.zjut.zjuthelp.Fragments.CircleFragment;
 import com.zjut.zjuthelp.Fragments.HistorykFragment;
@@ -31,8 +30,7 @@ public class MainActivity extends ActionBarActivity
         CircleFragment.OnFragmentInteractionListener,
         NewsListFragment.OnFragmentInteractionListener,
         BorrowRecordsFragment.OnFragmentInteractionListener,
-        HistorykFragment.OnFragmentInteractionListener,
-        AboutFragment.OnFragmentInteractionListener {
+        HistorykFragment.OnFragmentInteractionListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -46,7 +44,6 @@ public class MainActivity extends ActionBarActivity
     private LinearLayout itemLibrary;
     private LinearLayout itemTeachingAffairs;
     private LinearLayout itemSettings;
-    private LinearLayout itemAbout;
 
     //页面
     private NewsFragment newsFragment;
@@ -54,7 +51,6 @@ public class MainActivity extends ActionBarActivity
     private LibraryFragment libraryFragment;
     private TeachingAffairsFragment teachingAffairsFragment;
     private SettingsFragment settingsFragment;
-    private AboutFragment aboutFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,14 +67,12 @@ public class MainActivity extends ActionBarActivity
         itemLibrary = (LinearLayout)findViewById(R.id.item_library);
         itemTeachingAffairs = (LinearLayout)findViewById(R.id.item_teaching_affairs);
         itemSettings = (LinearLayout)findViewById(R.id.item_settings);
-        itemAbout = (LinearLayout)findViewById(R.id.item_about);
-        //事件处理
+        //设置菜单项点击事件
         itemNews.setOnClickListener(this);
         itemCircle.setOnClickListener(this);
         itemLibrary.setOnClickListener(this);
         itemTeachingAffairs.setOnClickListener(this);
         itemSettings.setOnClickListener(this);
-        itemAbout.setOnClickListener(this);
 
         fragmentManager = getFragmentManager();
 
@@ -97,7 +91,7 @@ public class MainActivity extends ActionBarActivity
         onClick(itemNews);
     }
 
-    //事件处理
+    //侧滑菜单Fragment切换
     @Override
     public void onClick(View v) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -154,16 +148,6 @@ public class MainActivity extends ActionBarActivity
                     transaction.show(settingsFragment);
                 }
                 break;
-            case R.id.item_about:
-                setTitle(R.string.about);
-                itemAbout.setBackgroundColor(getResources().getColor(R.color.colorLight));
-                if (aboutFragment == null) {
-                    aboutFragment = new AboutFragment();
-                    transaction.add(R.id.page, aboutFragment);
-                } else {
-                    transaction.show(aboutFragment);
-                }
-                break;
         }
         transaction.commit();
         drawerLayout.closeDrawers();
@@ -174,17 +158,16 @@ public class MainActivity extends ActionBarActivity
 
     };
 
-    //Reset Menu
+    //重置菜单颜色
     private void resetMenu() {
         itemNews.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemCircle.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemLibrary.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemTeachingAffairs.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemSettings.setBackgroundColor(getResources().getColor(R.color.colorWhite));
-        itemAbout.setBackgroundColor(getResources().getColor(R.color.colorWhite));
     }
 
-    //Hide Fragment
+    //隐藏Fragment
     private void hideFragment(FragmentTransaction transaction) {
         if (newsFragment != null) {
             transaction.hide(newsFragment);
@@ -200,9 +183,6 @@ public class MainActivity extends ActionBarActivity
         }
         if (settingsFragment != null) {
             transaction.hide(settingsFragment);
-        }
-        if (aboutFragment != null) {
-            transaction.hide(aboutFragment);
         }
     }
 
