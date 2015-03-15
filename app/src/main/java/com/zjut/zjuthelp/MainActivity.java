@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.umeng.analytics.MobclickAgent;
 import com.zjut.zjuthelp.Fragments.BorrowRecordsFragment;
 import com.zjut.zjuthelp.Fragments.CircleFragment;
 import com.zjut.zjuthelp.Fragments.HistorykFragment;
@@ -89,6 +90,18 @@ public class MainActivity extends ActionBarActivity
 
         //Load News Fragment
         onClick(itemNews);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     //侧滑菜单Fragment切换

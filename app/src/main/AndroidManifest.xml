@@ -3,6 +3,9 @@
     package="com.zjut.zjuthelp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -19,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data android:value="YOUR_APP_KEY" android:name="5504e89cfd98c5ca3f0003f0"/>
+        <meta-data android:value="BaiduD" android:name="UMENG_CHANNEL"/>
+
     </application>
 
 </manifest>
