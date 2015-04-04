@@ -4,11 +4,16 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.astuetz.PagerSlidingTabStrip;
+import com.zjut.zjuthelp.Adapter.MyFragmentPagerAdapter;
 import com.zjut.zjuthelp.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,7 +70,20 @@ public class TeachingAffairsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_teaching_affairs, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_teaching_affairs, container, false);
+        //Fragment初始化
+        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.view_pager_teaching_affairs);
+        ArrayList<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(new GradeQueryFragment());
+        fragmentList.add(new RoomFreeQueryFragment());
+        ArrayList<String> titleList = new ArrayList<>();
+        titleList.add(getResources().getString(R.string.grade_query));
+        titleList.add(getResources().getString(R.string.free_room_query));
+        viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(),fragmentList, titleList));
+        //TabStrip初始化
+        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) rootView.findViewById(R.id.pager_tab_teaching_affairs);
+        pagerSlidingTabStrip.setViewPager(viewPager);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

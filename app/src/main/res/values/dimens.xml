@@ -6,4 +6,5 @@
     <dimen name="menu_item_padding_vertical">12dp</dimen>
     <dimen name="divider_height">1dp</dimen>
     <dimen name="indicator_height">4dp</dimen>
+    <dimen name="card_content_padding">8dp</dimen>
 </resources>

@@ -1,4 +1,4 @@
-package com.zjut.zjuthelp.Container;
+package com.zjut.zjuthelp.Bean;
 
 public class News {
 

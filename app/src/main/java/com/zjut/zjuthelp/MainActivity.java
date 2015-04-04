@@ -3,26 +3,31 @@ package com.zjut.zjuthelp;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
 import com.zjut.zjuthelp.Fragments.BorrowRecordsFragment;
 import com.zjut.zjuthelp.Fragments.CircleFragment;
+import com.zjut.zjuthelp.Fragments.GradeQueryFragment;
 import com.zjut.zjuthelp.Fragments.HistorykFragment;
 import com.zjut.zjuthelp.Fragments.LibraryFragment;
 import com.zjut.zjuthelp.Fragments.NewsFragment;
 import com.zjut.zjuthelp.Fragments.NewsListFragment;
+import com.zjut.zjuthelp.Fragments.RoomFreeQueryFragment;
 import com.zjut.zjuthelp.Fragments.SettingsFragment;
 import com.zjut.zjuthelp.Fragments.TeachingAffairsFragment;
 
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends BaseActivity
         implements View.OnClickListener,
         NewsFragment.OnFragmentInteractionListener,
         LibraryFragment.OnFragmentInteractionListener,
@@ -31,7 +36,9 @@ public class MainActivity extends ActionBarActivity
         CircleFragment.OnFragmentInteractionListener,
         NewsListFragment.OnFragmentInteractionListener,
         BorrowRecordsFragment.OnFragmentInteractionListener,
-        HistorykFragment.OnFragmentInteractionListener {
+        HistorykFragment.OnFragmentInteractionListener,
+        GradeQueryFragment.OnFragmentInteractionListener,
+        RoomFreeQueryFragment.OnFragmentInteractionListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -57,6 +64,13 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //修改状态栏颜色
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            tintManager.setTintResource(R.color.colorPrimaryDark);
+        }
 
         //初始化工具栏
         toolbar = (Toolbar)findViewById(R.id.main_toolbar);

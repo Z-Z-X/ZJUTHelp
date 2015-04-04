@@ -10,11 +10,13 @@
             android:dialogTitle="@string/edit_student_id" />
         <EditTextPreference
             android:key="library_password_preference"
+            android:inputType="textPassword"
             android:title="@string/library_password"
             android:summary="@string/edit_library_password"
             android:dialogTitle="@string/edit_library_password" />
         <EditTextPreference
             android:key="teaching_affairs_password_preference"
+            android:inputType="textPassword"
             android:title="@string/teaching_affairs_password"
             android:summary="@string/edit_teaching_affairs_password"
             android:dialogTitle="@string/edit_teaching_affairs_password" />
@@ -25,6 +27,10 @@
         <Preference
             android:key="open_source_licence"
             android:title="@string/open_source_licence"/>
+        <Preference
+            android:key="version_code"
+            android:summary="0.0.0.0"
+            android:title="@string/version_code"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -1,14 +1,30 @@
 package com.zjut.zjuthelp.Fragments;
 
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.app.Activity;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+import com.github.ksoichiro.android.observablescrollview.ScrollState;
+import com.zjut.zjuthelp.Adapter.NewsAdapter;
+import com.zjut.zjuthelp.Bean.News;
 import com.zjut.zjuthelp.R;
+import com.zjut.zjuthelp.Web.ZJUTNews;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +34,13 @@ import com.zjut.zjuthelp.R;
  * Use the {@link NewsListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewsListFragment extends Fragment {
+public class NewsListFragment extends Fragment implements ObservableScrollViewCallbacks, SwipeRefreshLayout.OnRefreshListener {
+
+    private boolean loading = true;
+    private ObservableRecyclerView recyclerView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private List<News> list;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,7 +87,31 @@ public class NewsListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        //显示资讯列表
+        recyclerView = (ObservableRecyclerView) rootView.findViewById(R.id.news_list);
+        final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setScrollViewCallbacks(this);
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                int visibleItemCount  = mLayoutManager.getChildCount();
+                int totalItemCount = mLayoutManager.getItemCount();
+                int pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
+                if (loading) {
+                    if ( (visibleItemCount+pastVisiblesItems) >= totalItemCount) {
+                        loading = false;
+                        Log.v("...", "Last Item Wow !");
+                    }
+                }
+            }
+        });
+        new LoadNews().execute();
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -107,4 +153,59 @@ public class NewsListFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+    @Override
+    public void onScrollChanged(int i, boolean b, boolean b2) {
+
+    }
+
+    @Override
+    public void onDownMotionEvent() {
+
+    }
+
+    @Override
+    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+        ActionBar ab = ((ActionBarActivity)getActivity()).getSupportActionBar();
+        if (scrollState == ScrollState.UP) {
+            if (ab.isShowing()) {
+                ab.hide();
+            }
+        } else if (scrollState == ScrollState.DOWN) {
+            if (!ab.isShowing()) {
+                ab.show();
+            }
+        }
+    }
+
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }, 5000);
+    }
+
+    class LoadNews extends AsyncTask<Void, Integer, Integer> {
+        private List<News> newsList;
+        // Do before execute
+        @Override
+        protected void onPreExecute() {
+
+        }
+        // Do in background
+        @Override
+        protected Integer doInBackground(Void... params) {
+            //获取资讯列表
+            ZJUTNews zjutNews = new ZJUTNews(mParam1);
+            newsList = zjutNews.getNewsList();
+            return 0;
+        }
+        // Do after execute
+        @Override
+        protected void onPostExecute(Integer integer) {
+            list = newsList;
+            recyclerView.setAdapter(new NewsAdapter(getActivity(), list));
+        }
+    }
 }

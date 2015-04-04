@@ -71,7 +71,22 @@ public class NewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_news, container, false);
+        //Fragment初始化
+        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.view_pager_news);
+        ArrayList<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(NewsListFragment.newInstance(ZJUTNews.URL_NOTIFICATION, null));
+        fragmentList.add(NewsListFragment.newInstance(ZJUTNews.URL_ZJUTER, null));
+        fragmentList.add(NewsListFragment.newInstance(ZJUTNews.URL_FOOD_TRAVEL, null));
+        ArrayList<String> titleList = new ArrayList<>();
+        titleList.add(getResources().getString(R.string.notification));
+        titleList.add(getResources().getString(R.string.zjuter));
+        titleList.add(getResources().getString(R.string.travel_and_food));
+        viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(),fragmentList, titleList));
+        //TabStrip初始化
+        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) rootView.findViewById(R.id.pager_tab_news);
+        pagerSlidingTabStrip.setViewPager(viewPager);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -112,24 +127,4 @@ public class NewsFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //Fragment初始化
-        ViewPager viewPager = (ViewPager)getActivity().findViewById(R.id.view_pager_news);
-        ArrayList<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(NewsListFragment.newInstance(ZJUTNews.URL_NOTIFICATION, null));
-        fragmentList.add(NewsListFragment.newInstance(ZJUTNews.URL_ZJUTER, null));
-        fragmentList.add(NewsListFragment.newInstance(ZJUTNews.URL_FOOD_TRAVEL, null));
-        ArrayList<String> titleList = new ArrayList<>();
-        titleList.add(getResources().getString(R.string.notification));
-        titleList.add(getResources().getString(R.string.zjuter));
-        titleList.add(getResources().getString(R.string.travel_and_food));
-        viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(),fragmentList, titleList));
-        //TabStrip初始化
-        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip)getActivity().findViewById(R.id.pager_tab_news);
-        pagerSlidingTabStrip.setViewPager(viewPager);
-    }
-
 }

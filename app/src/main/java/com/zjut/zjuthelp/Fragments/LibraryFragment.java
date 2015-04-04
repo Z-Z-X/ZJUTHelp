@@ -70,7 +70,20 @@ public class LibraryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_library, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_library, container, false);
+        //Fragment初始化
+        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.view_pager_library);
+        ArrayList<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(new BorrowRecordsFragment());
+        fragmentList.add(new HistorykFragment());
+        ArrayList<String> titleList = new ArrayList<>();
+        titleList.add(getResources().getString(R.string.borrow_record));
+        titleList.add(getResources().getString(R.string.history));
+        viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(),fragmentList, titleList));
+        //TabStrip初始化
+        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) rootView.findViewById(R.id.pager_tab_library);
+        pagerSlidingTabStrip.setViewPager(viewPager);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -111,23 +124,4 @@ public class LibraryFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
-
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //Fragment初始化
-        ViewPager viewPager = (ViewPager)getActivity().findViewById(R.id.view_pager_library);
-        ArrayList<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new BorrowRecordsFragment());
-        fragmentList.add(new HistorykFragment());
-        ArrayList<String> titleList = new ArrayList<>();
-        titleList.add(getResources().getString(R.string.borrow_record));
-        titleList.add(getResources().getString(R.string.history));
-        viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(),fragmentList, titleList));
-        //TabStrip初始化
-        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip)getActivity().findViewById(R.id.pager_tab_library);
-        pagerSlidingTabStrip.setViewPager(viewPager);
-    }
-
 }

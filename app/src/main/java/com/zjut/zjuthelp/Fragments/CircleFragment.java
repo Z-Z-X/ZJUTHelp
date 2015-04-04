@@ -2,6 +2,7 @@ package com.zjut.zjuthelp.Fragments;
 
 import android.app.Activity;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,8 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.zjut.zjuthelp.R;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +28,8 @@ import com.zjut.zjuthelp.R;
  */
 public class CircleFragment extends Fragment {
 
-    RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView;
+    private TextView title;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,7 +77,10 @@ public class CircleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_circle, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_circle, container, false);
+        title = (TextView) rootView.findViewById(R.id.title);
+        new JsoupTest().execute();
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -115,6 +125,32 @@ public class CircleFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+    }
+
+    class JsoupTest extends AsyncTask<Void, Integer, Integer> {
+        String str;
+        // Do before execute
+        @Override
+        protected void onPreExecute() {
+            title.setText("WAIT");
+        }
+        // Do in background
+        @Override
+        protected Integer doInBackground(Void... params) {
+            try {
+                Document doc = Jsoup.connect("http://atzzh.com").get();
+                Element element = doc.select("title").first();
+                str = element.text();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+        // Do after execute
+        @Override
+        protected void onPostExecute(Integer integer) {
+            title.setText(str);
+        }
     }
 
 }

@@ -23,6 +23,41 @@
         <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-5268831c24d6300487df66e42983d30654e911da.jar" />
     </item>
     <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\libs\systembartint-1.0.4.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="06404f77b92ec723cc132e825afe85a07da85ee6">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\systembartint-1.0.4-41331521810ea8b028f1da61f998a98eca46f7e3.jar" />
+    </item>
+    <item
+        jar="C:\Program Files\adt-bundle-windows-x86_64-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-7ddf422bf9eb2a77b32d3b618b7ad6a60a62373c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\libs\umeng-analytics-v5.4.2.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="75ef4894b1489017838dc57dbe9a5782ab12c427">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\umeng-analytics-v5.4.2-fb3ab504bece9c161f5ea7fe0fb8cca2d6751ef5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="2c2071dcaf7a008c3b01a6381a33be55396bab09">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-45aa436927ffcd01428a5c7ebcde54830f5c17f2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\picasso-2.5.2-382b0754fabf66894c4a9864373f008650920b7d.jar" />
+    </item>
+    <item
         jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="20.0.0"
@@ -37,18 +72,18 @@
         <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-b4eebf683b71d527cc208eda4a9ee60d943a2990.jar" />
     </item>
     <item
-        jar="C:\Program Files\adt-bundle-windows-x86_64-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-7ddf422bf9eb2a77b32d3b618b7ad6a60a62373c.jar" />
-    </item>
-    <item
         jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\classes.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="7912610ed96381c25c36d986eba422731b9641b6">
         <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-406a238f2c4f9155a73911e53d3240a74a79747a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\.gradle\caches\modules-2\files-2.1\com.nostra13.universalimageloader\universal-image-loader\1.9.3\a85588bec3e2c4584d593d3f15df1677321bca72\universal-image-loader-1.9.3.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a85588bec3e2c4584d593d3f15df1677321bca72">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3-af9d7728e0bc8f3d50e76297fdf5a43d8a56136d.jar" />
     </item>
     <item
         jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
@@ -65,11 +100,11 @@
         <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-a5d551d3a0d078d4477b3baf00c1634929ecaf6b.jar" />
     </item>
     <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.3\classes.jar"
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.github.ksoichiro\android-observablescrollview\1.5.0\classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="2c2071dcaf7a008c3b01a6381a33be55396bab09">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-45aa436927ffcd01428a5c7ebcde54830f5c17f2.jar" />
+        sha1="010ee9e87a286afcaeaed368dcf829e42d0aa2a0">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-ec49137758d9e51ab18812606f1fe9a28fbc84f9.jar" />
     </item>
 
 </items>

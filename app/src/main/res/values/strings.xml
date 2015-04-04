@@ -17,6 +17,8 @@
     <string name="borrow_record">当前借阅</string>
     <string name="history">借阅历史</string>
     <string name="teaching_affairs">教务处</string>
+    <string name="grade_query">成绩查询</string>
+    <string name="free_room_query">空教室查询</string>
     <string name="settings">设置</string>
     <string name="accounts">账户</string>
     <string name="student_id">学号</string>
@@ -27,6 +29,7 @@
     <string name="edit_teaching_affairs_password">编辑教务系统密码</string>
     <string name="about">关于</string>
     <string name="open_source_licence">开源许可协议</string>
+    <string name="version_code">版本号</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

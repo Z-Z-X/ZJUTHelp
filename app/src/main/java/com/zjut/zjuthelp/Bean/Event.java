@@ -1,4 +1,4 @@
-package com.zjut.zjuthelp.Container;
+package com.zjut.zjuthelp.Bean;
 
 /*
 创建日期：2015-3-14
