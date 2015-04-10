@@ -14,6 +14,7 @@ import com.zjut.zjuthelp.Bean.News;
 import com.zjut.zjuthelp.NewsViewActivity;
 import com.zjut.zjuthelp.R;
 
+import java.net.URLEncoder;
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
@@ -28,7 +29,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.news_view, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_news, viewGroup, false);
         return new ViewHolder(v);
     }
 
@@ -37,7 +38,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         News news = mList.get(i);
         viewHolder.newsTitle.setText(news.getNewsTitle());
         viewHolder.newsOutline.setText(news.getNewsOutline());
-        Picasso.with(mContext).load(news.getImageURL()).into(viewHolder.newsImage);
+        // Encode thr url of image
+        String url = news.getImageURL();
+        int start = url.lastIndexOf("/");
+        int end = url.indexOf("&", start);
+        String part1 = url.substring(0, start+1);
+        String part2 = URLEncoder.encode(url.substring(start + 1, end));
+        String part3 = url.substring(end);
+        url = part1 + part2 + part3;
+        Picasso.with(mContext).load(url).into(viewHolder.newsImage);
     }
 
     @Override

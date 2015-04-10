@@ -51,6 +51,20 @@
         <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-45aa436927ffcd01428a5c7ebcde54830f5c17f2.jar" />
     </item>
     <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.github.navasmdc\MaterialDesign\1.3\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="72e9855052de681a5ff07d53ac5044d0274ae923">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-9d6e408f0c685f6e7328ef8bd4b20525a43a9f4d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\library-2.4.0-60eb8230c351d76810a756f852a5f49d9585b9b0.jar" />
+    </item>
+    <item
         jar="C:\Users\Zhang\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
         jumboMode="false"
         revision="20.0.0"

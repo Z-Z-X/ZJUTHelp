@@ -5,18 +5,16 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
 import com.zjut.zjuthelp.R;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import java.net.URLEncoder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +27,7 @@ import org.jsoup.nodes.Element;
 public class CircleFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
-    private TextView title;
+    private ImageView img;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,8 +76,17 @@ public class CircleFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_circle, container, false);
-        title = (TextView) rootView.findViewById(R.id.title);
-        new JsoupTest().execute();
+        img = (ImageView) rootView.findViewById(R.id.img);
+        String url = "http://news.zjut.com/wp-content/themes/evmito/timthumb.php?src=http://news.zjut.com/wp-content/uploads/2015/04/QQ图片20150326203241-300x199.jpg&w=130&h=160&zc=1";
+        int start = url.lastIndexOf("/");
+        int end = url.indexOf("&", start);
+        String part1 = url.substring(0, start+1);
+        String part2 = URLEncoder.encode(url.substring(start+1, end));
+        String part3 = url.substring(end);
+        Log.d("URL", part1 + part2 + part3);
+        Picasso.with(rootView.getContext())
+                .load( part1 + part2 + part3)
+                .into(img);
         return rootView;
     }
 
@@ -132,24 +139,16 @@ public class CircleFragment extends Fragment {
         // Do before execute
         @Override
         protected void onPreExecute() {
-            title.setText("WAIT");
+
         }
         // Do in background
         @Override
         protected Integer doInBackground(Void... params) {
-            try {
-                Document doc = Jsoup.connect("http://atzzh.com").get();
-                Element element = doc.select("title").first();
-                str = element.text();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             return 0;
         }
         // Do after execute
         @Override
         protected void onPostExecute(Integer integer) {
-            title.setText(str);
         }
     }
 

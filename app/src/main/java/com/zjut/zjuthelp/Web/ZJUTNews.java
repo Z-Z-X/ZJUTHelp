@@ -22,20 +22,15 @@ public class ZJUTNews {
     // 当前解析网页地址
     private String URL;
 
-    // 当前页码
-    private int page;
-
     public ZJUTNews(String url) {
         URL = url;
     }
 
     public List<News> getNewsList() {
-        page = 1;
         return parser(URL);
     }
 
-    public List<News> getNextNewsList() {
-        page++;
+    public List<News> getNextNewsList(int page) {
         return parser(URL + "/page/" + String.valueOf(page));
     }
 
@@ -50,7 +45,7 @@ public class ZJUTNews {
         newsList.add(testA);*/
 
         try {
-            Document doc = Jsoup.connect(URL).get();
+            Document doc = Jsoup.connect(url).get();
             Elements lis = doc.select("div.main_left > ul > li");
             for (Element li: lis) {
                 News news = new News();

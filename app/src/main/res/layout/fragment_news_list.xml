@@ -1,19 +1,20 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.zjut.zjuthelp.Fragments.NewsListFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_container"
+    <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
+        android:id="@+id/news_list"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"/>
 
-        <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
-            android:id="@+id/news_list"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"/>
+    <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
+        android:id="@+id/progressBar"
+        android:layout_centerInParent="true"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/colorPrimary" />
 
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-</FrameLayout>
+</RelativeLayout>

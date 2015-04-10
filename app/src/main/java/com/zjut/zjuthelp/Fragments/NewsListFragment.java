@@ -1,7 +1,5 @@
 package com.zjut.zjuthelp.Fragments;
 
-import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.app.Activity;
 import android.net.Uri;
@@ -11,7 +9,6 @@ import android.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +31,15 @@ import java.util.List;
  * Use the {@link NewsListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewsListFragment extends Fragment implements ObservableScrollViewCallbacks, SwipeRefreshLayout.OnRefreshListener {
+public class NewsListFragment extends Fragment implements ObservableScrollViewCallbacks {
 
     private boolean loading = true;
+    private int page = 1;
     private ObservableRecyclerView recyclerView;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private NewsAdapter mAdapter;
+    private View progressBar;
     private List<News> list;
+    ZJUTNews zjutNews;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -81,6 +81,7 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        zjutNews = new ZJUTNews(mParam1);
     }
 
     @Override
@@ -88,9 +89,8 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-        mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
-        mSwipeRefreshLayout.setOnRefreshListener(this);
+        // 初始化进度条
+        progressBar = (View) rootView.findViewById(R.id.progressBar);
         //显示资讯列表
         recyclerView = (ObservableRecyclerView) rootView.findViewById(R.id.news_list);
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -105,12 +105,13 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
                 if (loading) {
                     if ( (visibleItemCount+pastVisiblesItems) >= totalItemCount) {
                         loading = false;
-                        Log.v("...", "Last Item Wow !");
+                        progressBar.setVisibility(View.VISIBLE);
+                        new LoadNews().execute(1);
                     }
                 }
             }
         });
-        new LoadNews().execute();
+        new LoadNews().execute(0);
         return rootView;
     }
 
@@ -177,17 +178,9 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
         }
     }
 
-    public void onRefresh() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        }, 5000);
-    }
-
-    class LoadNews extends AsyncTask<Void, Integer, Integer> {
+    class LoadNews extends AsyncTask<Integer, Integer, Integer> {
         private List<News> newsList;
+        private int mode;
         // Do before execute
         @Override
         protected void onPreExecute() {
@@ -195,17 +188,31 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
         }
         // Do in background
         @Override
-        protected Integer doInBackground(Void... params) {
+        protected Integer doInBackground(Integer... params) {
+            mode = params[0];
             //获取资讯列表
-            ZJUTNews zjutNews = new ZJUTNews(mParam1);
-            newsList = zjutNews.getNewsList();
+            if (mode == 0) {
+                newsList = zjutNews.getNewsList();
+            } else {
+                newsList = zjutNews.getNextNewsList(++page);
+            }
             return 0;
         }
         // Do after execute
         @Override
         protected void onPostExecute(Integer integer) {
-            list = newsList;
-            recyclerView.setAdapter(new NewsAdapter(getActivity(), list));
+            progressBar.setVisibility(View.GONE);
+            if (mode == 0) {
+                list = newsList;
+                mAdapter = new NewsAdapter(getActivity(), list);
+                recyclerView.setAdapter(mAdapter);
+            } else {
+                for (News news: newsList) {
+                    list.add(news);
+                }
+                loading = true;
+                mAdapter.notifyDataSetChanged();
+            }
         }
     }
 }

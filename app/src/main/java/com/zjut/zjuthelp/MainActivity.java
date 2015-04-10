@@ -5,17 +5,15 @@ import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
+
 import com.zjut.zjuthelp.Fragments.BorrowRecordsFragment;
 import com.zjut.zjuthelp.Fragments.CircleFragment;
 import com.zjut.zjuthelp.Fragments.GradeQueryFragment;
@@ -46,14 +44,14 @@ public class MainActivity extends BaseActivity
 
     private FragmentManager fragmentManager;
 
-    //主菜单控件
+    // Linear Layout in main menu
     private LinearLayout itemNews;
     private LinearLayout itemCircle;
     private LinearLayout itemLibrary;
     private LinearLayout itemTeachingAffairs;
     private LinearLayout itemSettings;
 
-    //页面
+    // Fragments
     private NewsFragment newsFragment;
     private CircleFragment circleFragment;
     private LibraryFragment libraryFragment;
@@ -65,44 +63,44 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //修改状态栏颜色
+        // Chang the color of system bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
             tintManager.setTintResource(R.color.colorPrimaryDark);
         }
 
-        //初始化工具栏
+        // Init the toolbar
         toolbar = (Toolbar)findViewById(R.id.main_toolbar);
-        //初始化侧滑菜单
-        drawerLayout = (DrawerLayout)findViewById(R.id.main_drawer);
-        //初始化菜单中的项目
-        itemNews = (LinearLayout)findViewById(R.id.item_news);
-        itemCircle = (LinearLayout)findViewById(R.id.item_circle);
-        itemLibrary = (LinearLayout)findViewById(R.id.item_library);
-        itemTeachingAffairs = (LinearLayout)findViewById(R.id.item_teaching_affairs);
-        itemSettings = (LinearLayout)findViewById(R.id.item_settings);
-        //设置菜单项点击事件
-        itemNews.setOnClickListener(this);
-        itemCircle.setOnClickListener(this);
-        itemLibrary.setOnClickListener(this);
-        itemTeachingAffairs.setOnClickListener(this);
-        itemSettings.setOnClickListener(this);
-
-        fragmentManager = getFragmentManager();
-
-        //配置工具栏
+        // Config the toolbar
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //开启关闭菜单
+        // Init drawer menu
+        drawerLayout = (DrawerLayout)findViewById(R.id.main_drawer);
+        // Init items in main menu
+        itemNews = (LinearLayout)findViewById(R.id.item_news);
+        itemCircle = (LinearLayout)findViewById(R.id.item_circle);
+        itemLibrary = (LinearLayout)findViewById(R.id.item_library);
+        itemTeachingAffairs = (LinearLayout)findViewById(R.id.item_teaching_affairs);
+        itemSettings = (LinearLayout)findViewById(R.id.item_settings);
+        // Set OnClickListener
+        itemNews.setOnClickListener(this);
+        itemCircle.setOnClickListener(this);
+        itemLibrary.setOnClickListener(this);
+        itemTeachingAffairs.setOnClickListener(this);
+        itemSettings.setOnClickListener(this);
+        // Set action bar drawer toggle
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerToggle.syncState();
         drawerLayout.setDrawerListener(drawerToggle);
 
-        //Load News Fragment
+        // Get fragment manager
+        fragmentManager = getFragmentManager();
+
+        // Load News Fragment
         onClick(itemNews);
     }
 
@@ -118,13 +116,16 @@ public class MainActivity extends BaseActivity
         MobclickAgent.onPause(this);
     }
 
-    //侧滑菜单Fragment切换
+    // Transition in difference fragments
     @Override
     public void onClick(View v) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+        // Hide all fragments
         hideFragment(transaction);
-        resetMenu();
+        // Init the color of items
+        resetMenuBackgroundColor();
         switch (v.getId()) {
+            // Transit to the news fragment
             case R.id.item_news:
                 setTitle(R.string.news);
                 itemNews.setBackgroundColor(getResources().getColor(R.color.colorLight));
@@ -135,6 +136,7 @@ public class MainActivity extends BaseActivity
                     transaction.show(newsFragment);
                 }
                 break;
+            // Transit to the circle fragment
             case R.id.item_circle:
                 setTitle(R.string.circle);
                 itemCircle.setBackgroundColor(getResources().getColor(R.color.colorLight));
@@ -145,6 +147,7 @@ public class MainActivity extends BaseActivity
                     transaction.show(circleFragment);
                 }
                 break;
+            // Transit to the library fragment
             case R.id.item_library:
                 setTitle(R.string.library);
                 itemLibrary.setBackgroundColor(getResources().getColor(R.color.colorLight));
@@ -155,6 +158,7 @@ public class MainActivity extends BaseActivity
                     transaction.show(libraryFragment);
                 }
                 break;
+            // Transit to the teaching affairs fragment
             case R.id.item_teaching_affairs:
                 setTitle(R.string.teaching_affairs);
                 itemTeachingAffairs.setBackgroundColor(getResources().getColor(R.color.colorLight));
@@ -165,6 +169,7 @@ public class MainActivity extends BaseActivity
                     transaction.show(teachingAffairsFragment);
                 }
                 break;
+            // Transit to the settings fragment
             case R.id.item_settings:
                 setTitle(R.string.settings);
                 itemSettings.setBackgroundColor(getResources().getColor(R.color.colorLight));
@@ -177,6 +182,7 @@ public class MainActivity extends BaseActivity
                 break;
         }
         transaction.commit();
+        // Close drawers
         drawerLayout.closeDrawers();
     }
 
@@ -185,8 +191,8 @@ public class MainActivity extends BaseActivity
 
     };
 
-    //重置菜单颜色
-    private void resetMenu() {
+    // Init the color of items
+    private void resetMenuBackgroundColor() {
         itemNews.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemCircle.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemLibrary.setBackgroundColor(getResources().getColor(R.color.colorWhite));
@@ -194,7 +200,7 @@ public class MainActivity extends BaseActivity
         itemSettings.setBackgroundColor(getResources().getColor(R.color.colorWhite));
     }
 
-    //隐藏Fragment
+    // Hide all fragments
     private void hideFragment(FragmentTransaction transaction) {
         if (newsFragment != null) {
             transaction.hide(newsFragment);

@@ -21,8 +21,9 @@ import org.jsoup.select.Elements;
 
 public class NewsViewActivity extends ActionBarActivity {
 
-    String url;
+    private String url;
     private WebView webView;
+    private View progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,9 @@ public class NewsViewActivity extends ActionBarActivity {
             tintManager.setStatusBarTintEnabled(true);
             tintManager.setTintResource(R.color.colorPrimaryDark);
         }
+
+        // 初始化进度条
+        progressBar = (View) findViewById(R.id.progressBar);
 
         //初始化工具栏
         Toolbar toolbar = (Toolbar)findViewById(R.id.news_view_toolbar);
@@ -96,6 +100,7 @@ public class NewsViewActivity extends ActionBarActivity {
         // Do after execute
         @Override
         protected void onPostExecute(Integer integer) {
+            progressBar.setVisibility(View.GONE);
             setTitle(title);
             webView.loadDataWithBaseURL("", content, "text/html", "UTF-8", "");
         }
