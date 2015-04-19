@@ -2,10 +2,10 @@ package com.zjut.zjuthelp.Bean;
 
 public class News {
 
-    private String newsTitle;   //资讯标题
-    private String newsURL;     //资讯链接
-    private String newsOutline; //资讯概要
-    private String imageURL;    //图片地址
+    private String newsTitle;
+    private String newsURL;
+    private String newsOutline;
+    private String imageURL;
 
     public void setNewsTitle(String title) {
         newsTitle = title;

@@ -31,15 +31,20 @@ import java.util.List;
  * Use the {@link NewsListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewsListFragment extends Fragment implements ObservableScrollViewCallbacks {
+public class NewsListFragment extends Fragment {
 
+    // Loading state
     private boolean loading = true;
-    private int page = 1;
+    // Recycler view
     private ObservableRecyclerView recyclerView;
+    // Adapter for recycler view
     private NewsAdapter mAdapter;
+    // Progress bar
     private View progressBar;
+    // News list
     private List<News> list;
-    ZJUTNews zjutNews;
+    // News getter
+    private ZJUTNews zjutNews;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,7 +52,7 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String mParam1;     // Param1 save url
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
@@ -81,6 +86,7 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        // Init the news getter
         zjutNews = new ZJUTNews(mParam1);
     }
 
@@ -89,13 +95,12 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
-        // 初始化进度条
-        progressBar = (View) rootView.findViewById(R.id.progressBar);
-        //显示资讯列表
+        // Init the progress bar
+        progressBar = rootView.findViewById(R.id.progressBar);
+        // Init recycler view
         recyclerView = (ObservableRecyclerView) rootView.findViewById(R.id.news_list);
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setScrollViewCallbacks(this);
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -104,6 +109,7 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
                 int pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
                 if (loading) {
                     if ( (visibleItemCount+pastVisiblesItems) >= totalItemCount) {
+                        // Load more news
                         loading = false;
                         progressBar.setVisibility(View.VISIBLE);
                         new LoadNews().execute(1);
@@ -111,6 +117,7 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
                 }
             }
         });
+        // Start async task
         new LoadNews().execute(0);
         return rootView;
     }
@@ -154,32 +161,11 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
         public void onFragmentInteraction(Uri uri);
     }
 
-    @Override
-    public void onScrollChanged(int i, boolean b, boolean b2) {
-
-    }
-
-    @Override
-    public void onDownMotionEvent() {
-
-    }
-
-    @Override
-    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
-        ActionBar ab = ((ActionBarActivity)getActivity()).getSupportActionBar();
-        if (scrollState == ScrollState.UP) {
-            if (ab.isShowing()) {
-                ab.hide();
-            }
-        } else if (scrollState == ScrollState.DOWN) {
-            if (!ab.isShowing()) {
-                ab.show();
-            }
-        }
-    }
-
     class LoadNews extends AsyncTask<Integer, Integer, Integer> {
+        // News list
         private List<News> newsList;
+        // Mode 0 : Get news list in first page
+        // Mode 1 : Get news list in next page
         private int mode;
         // Do before execute
         @Override
@@ -190,11 +176,11 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
         @Override
         protected Integer doInBackground(Integer... params) {
             mode = params[0];
-            //获取资讯列表
+            // Get news list
             if (mode == 0) {
                 newsList = zjutNews.getNewsList();
             } else {
-                newsList = zjutNews.getNextNewsList(++page);
+                newsList = zjutNews.getNextNewsList();
             }
             return 0;
         }
@@ -203,10 +189,12 @@ public class NewsListFragment extends Fragment implements ObservableScrollViewCa
         protected void onPostExecute(Integer integer) {
             progressBar.setVisibility(View.GONE);
             if (mode == 0) {
+                // Load news
                 list = newsList;
                 mAdapter = new NewsAdapter(getActivity(), list);
                 recyclerView.setAdapter(mAdapter);
             } else {
+                // Load more news
                 for (News news: newsList) {
                     list.add(news);
                 }

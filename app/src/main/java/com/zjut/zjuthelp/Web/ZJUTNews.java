@@ -14,30 +14,34 @@ import java.util.regex.Pattern;
 
 public class ZJUTNews {
 
-    // 精弘资讯网页地址
+    // URLs of websites
     public static final String URL_NOTIFICATION = "http://news.zjut.com/category/xiaoneitongzhi";
     public static final String URL_ZJUTER = "http://news.zjut.com/category/gongdaren";
     public static final String URL_FOOD_TRAVEL = "http://news.zjut.com/category/chizailushang";
 
-    // 当前解析网页地址
+    // Target URL
     private String URL;
+
+    // Page number
+    private int pageNum;
 
     public ZJUTNews(String url) {
         URL = url;
     }
 
     public List<News> getNewsList() {
+        pageNum = 1;
         return parser(URL);
     }
 
-    public List<News> getNextNewsList(int page) {
-        return parser(URL + "/page/" + String.valueOf(page));
+    public List<News> getNextNewsList() {
+        return parser(URL + "/page/" + String.valueOf(++pageNum));
     }
 
     private List<News> parser(String url) {
         ArrayList<News> newsList = new ArrayList<>();
 
-        /*测试代码
+        /* Code for testing
         News testA = new News();
         testA.setNewsTitle("浙江各大高校大片即视感刷爆朋友圈！");
         testA.setNewsOutline("来自小和山其他学校的桃花景致~话说咱们工大有桃花吗……");

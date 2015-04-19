@@ -97,6 +97,7 @@ public class NewsViewActivity extends ActionBarActivity {
            }
             return 0;
         }
+
         // Do after execute
         @Override
         protected void onPostExecute(Integer integer) {

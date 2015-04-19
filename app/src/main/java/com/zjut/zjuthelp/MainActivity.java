@@ -14,10 +14,10 @@ import android.widget.LinearLayout;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
 
-import com.zjut.zjuthelp.Fragments.BorrowRecordsFragment;
+import com.zjut.zjuthelp.Fragments.BorrowingFragment;
 import com.zjut.zjuthelp.Fragments.CircleFragment;
 import com.zjut.zjuthelp.Fragments.GradeQueryFragment;
-import com.zjut.zjuthelp.Fragments.HistorykFragment;
+import com.zjut.zjuthelp.Fragments.BorrowHistoryFragment;
 import com.zjut.zjuthelp.Fragments.LibraryFragment;
 import com.zjut.zjuthelp.Fragments.NewsFragment;
 import com.zjut.zjuthelp.Fragments.NewsListFragment;
@@ -33,8 +33,8 @@ public class MainActivity extends BaseActivity
         SettingsFragment.OnFragmentInteractionListener,
         CircleFragment.OnFragmentInteractionListener,
         NewsListFragment.OnFragmentInteractionListener,
-        BorrowRecordsFragment.OnFragmentInteractionListener,
-        HistorykFragment.OnFragmentInteractionListener,
+        BorrowingFragment.OnFragmentInteractionListener,
+        BorrowHistoryFragment.OnFragmentInteractionListener,
         GradeQueryFragment.OnFragmentInteractionListener,
         RoomFreeQueryFragment.OnFragmentInteractionListener {
 

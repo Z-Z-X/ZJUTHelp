@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * Use the {@link NewsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewsFragment extends Fragment {
+public class NewsFragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -72,18 +72,20 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_news, container, false);
-        //Fragment初始化
-        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.view_pager_news);
+        // Add fragments
         ArrayList<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(NewsListFragment.newInstance(ZJUTNews.URL_NOTIFICATION, null));
         fragmentList.add(NewsListFragment.newInstance(ZJUTNews.URL_ZJUTER, null));
         fragmentList.add(NewsListFragment.newInstance(ZJUTNews.URL_FOOD_TRAVEL, null));
+        // Add titles
         ArrayList<String> titleList = new ArrayList<>();
         titleList.add(getResources().getString(R.string.notification));
         titleList.add(getResources().getString(R.string.zjuter));
         titleList.add(getResources().getString(R.string.travel_and_food));
+        // Init the view pager
+        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.view_pager_news);
         viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(),fragmentList, titleList));
-        //TabStrip初始化
+        // Init pager sliding tab strip
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) rootView.findViewById(R.id.pager_tab_news);
         pagerSlidingTabStrip.setViewPager(viewPager);
         return rootView;

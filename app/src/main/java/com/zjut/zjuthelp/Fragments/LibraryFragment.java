@@ -71,16 +71,18 @@ public class LibraryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_library, container, false);
-        //Fragment初始化
-        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.view_pager_library);
+        // Add fragments
         ArrayList<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new BorrowRecordsFragment());
-        fragmentList.add(new HistorykFragment());
+        fragmentList.add(new BorrowingFragment());
+        fragmentList.add(new BorrowHistoryFragment());
+        // Add titles
         ArrayList<String> titleList = new ArrayList<>();
         titleList.add(getResources().getString(R.string.borrow_record));
         titleList.add(getResources().getString(R.string.history));
+        // Init the view pager
+        ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.view_pager_library);
         viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(),fragmentList, titleList));
-        //TabStrip初始化
+        // Init pager sliding tab strip
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) rootView.findViewById(R.id.pager_tab_library);
         pagerSlidingTabStrip.setViewPager(viewPager);
         return rootView;

@@ -19,7 +19,9 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
+    // News list
     private List<News> mList;
+    // Context
     private Context mContext;
 
     public NewsAdapter(Context context, List<News> list) {
@@ -46,6 +48,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         String part2 = URLEncoder.encode(url.substring(start + 1, end));
         String part3 = url.substring(end);
         url = part1 + part2 + part3;
+        // Load image
         Picasso.with(mContext).load(url).into(viewHolder.newsImage);
     }
 

@@ -1,22 +1,22 @@
 package com.zjut.zjuthelp.Bean;
 
 /*
-创建日期：2015-3-14
-作者：    Xavier
-功能：    活动对象
+Date:       2015-3-14
+Author:     Xavier
+Function:   Event object
 */
 
 public class Event {
 
-    private String eventTitle;     //活动标题
-    private String eventURL;       //活动链接
-    private String eventType;      //活动类型
-    private String eventStartime;  //活动开始时间
-    private String eventPlace;     //活动地点
-    private String eventPromoter;  //活动发起人
-    private String eventHeatrate;  //活动热度
-    private String eventDetails;   //活动详情
-    private String imageURL;      //图片地址
+    private String eventTitle;
+    private String eventURL;
+    private String eventType;
+    private String eventStartime;
+    private String eventPlace;
+    private String eventPromoter;
+    private String eventHeatrate;
+    private String eventDetails;
+    private String imageURL;
 
 	public void setEventTitle(String title) {
 		eventTitle = title;
