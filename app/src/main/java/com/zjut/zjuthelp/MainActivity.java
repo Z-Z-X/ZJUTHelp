@@ -15,7 +15,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
 
 import com.zjut.zjuthelp.Fragments.BorrowingFragment;
-import com.zjut.zjuthelp.Fragments.CircleFragment;
+import com.zjut.zjuthelp.Fragments.LifeFragmentife;
 import com.zjut.zjuthelp.Fragments.GradeQueryFragment;
 import com.zjut.zjuthelp.Fragments.BorrowHistoryFragment;
 import com.zjut.zjuthelp.Fragments.LibraryFragment;
@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity
         LibraryFragment.OnFragmentInteractionListener,
         TeachingAffairsFragment.OnFragmentInteractionListener,
         SettingsFragment.OnFragmentInteractionListener,
-        CircleFragment.OnFragmentInteractionListener,
+        LifeFragmentife.OnFragmentInteractionListener,
         NewsListFragment.OnFragmentInteractionListener,
         BorrowingFragment.OnFragmentInteractionListener,
         BorrowHistoryFragment.OnFragmentInteractionListener,
@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity
 
     // Fragments
     private NewsFragment newsFragment;
-    private CircleFragment circleFragment;
+    private LifeFragmentife circleFragment;
     private LibraryFragment libraryFragment;
     private TeachingAffairsFragment teachingAffairsFragment;
     private SettingsFragment settingsFragment;
@@ -138,10 +138,10 @@ public class MainActivity extends BaseActivity
                 break;
             // Transit to the circle fragment
             case R.id.item_circle:
-                setTitle(R.string.circle);
+                setTitle(R.string.life);
                 itemCircle.setBackgroundColor(getResources().getColor(R.color.colorLight));
                 if (circleFragment == null) {
-                    circleFragment = new CircleFragment();
+                    circleFragment = new LifeFragmentife();
                     transaction.add(R.id.page, circleFragment);
                 } else {
                     transaction.show(circleFragment);

@@ -1,5 +1,10 @@
 package com.zjut.zjuthelp.Web;
 
+import com.zjut.zjuthelp.Bean.Subject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ZJUTTeachingAffairs {
 
     private static String LOGIN_URL = "http://www.ycjw.zjut.edu.cn/logon.aspx";
@@ -14,7 +19,20 @@ public class ZJUTTeachingAffairs {
         password = pw;
     }
 
-    public static void RoomFreeQuery() {
+    public List<Subject> getGrades() {
+        ArrayList<Subject> list = new ArrayList<>();
+        Subject subject = new Subject();
+        subject.setSubjectTime("64");
+        subject.setSubjectScore("4");
+        subject.setSubjectGrade("100");
+        subject.setSubjectTerm("2014/2015(1)");
+        subject.setSubjectName("程序设计（C++）Ⅰ");
+        subject.setSubjectType("普通专业");
+        list.add(subject);
+        return list;
+    }
+
+    public static void roomFreeQuery() {
 
     }
 }

@@ -97,7 +97,7 @@ public class BorrowingFragment extends Fragment {
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         // Load Borrow History
-        new LoadBorrowHistory().execute(0);
+        new LoadBorrowHistory().execute();
         return rootView;
     }
 
@@ -140,12 +140,9 @@ public class BorrowingFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    class LoadBorrowHistory extends AsyncTask<Integer, Integer, Integer> {
+    class LoadBorrowHistory extends AsyncTask<Void, Integer, Integer> {
         // Book List
         private List<Book> bookList;
-        // Mode 0 : Get news list in first page
-        // Mode 1 : Get news list in next page
-        private int mode;
         // Do before execute
         @Override
         protected void onPreExecute() {
@@ -153,22 +150,17 @@ public class BorrowingFragment extends Fragment {
         }
         // Do in background
         @Override
-        protected Integer doInBackground(Integer... params) {
-            mode = params[0];
-            if (mode == 0) {
-                bookList = zjutLibrary.getBorrowingList();
-            }
+        protected Integer doInBackground(Void... params) {
+            bookList = zjutLibrary.getBorrowingList();
             return 0;
         }
         // Do after execute
         @Override
         protected void onPostExecute(Integer integer) {
             progressBar.setVisibility(View.GONE);
-            if (mode == 0) {
-                list = bookList;
-                mAdapter = new BorrowingAdapter(getActivity(), list);
-                recyclerView.setAdapter(mAdapter);
-            }
+            list = bookList;
+            mAdapter = new BorrowingAdapter(getActivity(), list);
+            recyclerView.setAdapter(mAdapter);
         }
     }
 

@@ -1,6 +1,5 @@
 package com.zjut.zjuthelp.Web;
 
-
 import com.zjut.zjuthelp.Bean.Book;
 
 import org.jsoup.Connection;
@@ -39,7 +38,7 @@ public class ZJUTLibrary {
             Document doc = Jsoup.connect(BORROWING_URL)
                     .cookies(response.cookies())
                     .get();
-           return parseBorrowing(doc);
+            return parseBorrowing(doc);
         } catch (Exception e) {
             e.printStackTrace();
         }

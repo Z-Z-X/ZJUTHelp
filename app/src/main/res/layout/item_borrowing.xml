@@ -22,6 +22,7 @@
         <TextView
             android:id="@+id/book_borrow_time"
             android:text="借书时间:2015-04-01 20:39:09"
+            android:layout_marginTop="@dimen/card_content_padding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

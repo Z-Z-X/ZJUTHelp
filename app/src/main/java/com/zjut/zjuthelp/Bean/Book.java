@@ -10,6 +10,7 @@ public class Book {
     
     private String bookName;
     private String bookURL;
+    private String bookImage;
     private String bookNumber;
     private String bookBorrowtime;
     private String bookReturntime;

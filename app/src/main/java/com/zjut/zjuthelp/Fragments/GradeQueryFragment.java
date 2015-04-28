@@ -2,13 +2,21 @@ package com.zjut.zjuthelp.Fragments;
 
 import android.app.Activity;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
+import com.zjut.zjuthelp.Adapter.SubjectAdapter;
+import com.zjut.zjuthelp.Bean.Subject;
 import com.zjut.zjuthelp.R;
+import com.zjut.zjuthelp.Web.ZJUTTeachingAffairs;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +27,19 @@ import com.zjut.zjuthelp.R;
  * create an instance of this fragment.
  */
 public class GradeQueryFragment extends Fragment {
+    // Loading state
+    private boolean loading = true;
+    // Recycler view
+    private ObservableRecyclerView recyclerView;
+    // Adapter for recycler view
+    private SubjectAdapter mAdapter;
+    // Progress bar
+    private View progressBar;
+    // Subject list
+    private List<Subject> mList;
+    // ZJUT Teaching Affairs
+    private ZJUTTeachingAffairs zjutTeachingAffairs;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,13 +80,23 @@ public class GradeQueryFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        zjutTeachingAffairs = new ZJUTTeachingAffairs("201426811427","zh10086");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_grade_query, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_grade_query, container, false);
+        // Init the progress bar
+        progressBar = rootView.findViewById(R.id.progressBar);
+        // Init recycler view
+        recyclerView = (ObservableRecyclerView) rootView.findViewById(R.id.subject_list);
+        final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(mLayoutManager);
+        // Load grades
+        new LoadGrade().execute();
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -105,6 +136,27 @@ public class GradeQueryFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+
+    class LoadGrade extends AsyncTask<Void, Integer, Integer> {
+        // Subject list
+        private List<Subject> list;
+        @Override
+        protected void onPreExecute() {
+
+        }
+        @Override
+        protected Integer doInBackground(Void... params) {
+            list = zjutTeachingAffairs.getGrades();
+            return 0;
+        }
+        @Override
+        protected void onPostExecute(Integer integer) {
+            progressBar.setVisibility(View.GONE);
+            mList = list;
+            mAdapter = new SubjectAdapter(getActivity(), mList);
+            recyclerView.setAdapter(mAdapter);
+        }
     }
 
 }
