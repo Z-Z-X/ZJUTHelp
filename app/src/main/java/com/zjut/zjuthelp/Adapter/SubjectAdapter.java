@@ -28,7 +28,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
         Subject subject = mList.get(i);
         viewHolder.mGrade.setText(subject.getSubjectGrade());
         viewHolder.mSubject.setText(subject.getSubjectName());
-        viewHolder.mInfo.setText("学分：" + subject.getSubjectScore());
+        viewHolder.mInfo.setText("学分：" + subject.getSubjectScore() + "  学时：" + subject.getSubjectTime() + "   类型：" + subject.getSubjectType());
     }
 
     @Override

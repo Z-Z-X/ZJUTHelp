@@ -15,7 +15,6 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
 
 import com.zjut.zjuthelp.Fragments.BorrowingFragment;
-import com.zjut.zjuthelp.Fragments.LifeFragmentife;
 import com.zjut.zjuthelp.Fragments.GradeQueryFragment;
 import com.zjut.zjuthelp.Fragments.BorrowHistoryFragment;
 import com.zjut.zjuthelp.Fragments.LibraryFragment;
@@ -31,7 +30,6 @@ public class MainActivity extends BaseActivity
         LibraryFragment.OnFragmentInteractionListener,
         TeachingAffairsFragment.OnFragmentInteractionListener,
         SettingsFragment.OnFragmentInteractionListener,
-        LifeFragmentife.OnFragmentInteractionListener,
         NewsListFragment.OnFragmentInteractionListener,
         BorrowingFragment.OnFragmentInteractionListener,
         BorrowHistoryFragment.OnFragmentInteractionListener,
@@ -46,14 +44,12 @@ public class MainActivity extends BaseActivity
 
     // Linear Layout in main menu
     private LinearLayout itemNews;
-    private LinearLayout itemCircle;
     private LinearLayout itemLibrary;
     private LinearLayout itemTeachingAffairs;
     private LinearLayout itemSettings;
 
     // Fragments
     private NewsFragment newsFragment;
-    private LifeFragmentife circleFragment;
     private LibraryFragment libraryFragment;
     private TeachingAffairsFragment teachingAffairsFragment;
     private SettingsFragment settingsFragment;
@@ -82,13 +78,11 @@ public class MainActivity extends BaseActivity
         drawerLayout = (DrawerLayout)findViewById(R.id.main_drawer);
         // Init items in main menu
         itemNews = (LinearLayout)findViewById(R.id.item_news);
-        itemCircle = (LinearLayout)findViewById(R.id.item_circle);
         itemLibrary = (LinearLayout)findViewById(R.id.item_library);
         itemTeachingAffairs = (LinearLayout)findViewById(R.id.item_teaching_affairs);
         itemSettings = (LinearLayout)findViewById(R.id.item_settings);
         // Set OnClickListener
         itemNews.setOnClickListener(this);
-        itemCircle.setOnClickListener(this);
         itemLibrary.setOnClickListener(this);
         itemTeachingAffairs.setOnClickListener(this);
         itemSettings.setOnClickListener(this);
@@ -134,17 +128,6 @@ public class MainActivity extends BaseActivity
                     transaction.add(R.id.page, newsFragment);
                 } else {
                     transaction.show(newsFragment);
-                }
-                break;
-            // Transit to the circle fragment
-            case R.id.item_circle:
-                setTitle(R.string.life);
-                itemCircle.setBackgroundColor(getResources().getColor(R.color.colorLight));
-                if (circleFragment == null) {
-                    circleFragment = new LifeFragmentife();
-                    transaction.add(R.id.page, circleFragment);
-                } else {
-                    transaction.show(circleFragment);
                 }
                 break;
             // Transit to the library fragment
@@ -194,7 +177,6 @@ public class MainActivity extends BaseActivity
     // Init the color of items
     private void resetMenuBackgroundColor() {
         itemNews.setBackgroundColor(getResources().getColor(R.color.colorWhite));
-        itemCircle.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemLibrary.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemTeachingAffairs.setBackgroundColor(getResources().getColor(R.color.colorWhite));
         itemSettings.setBackgroundColor(getResources().getColor(R.color.colorWhite));
@@ -204,9 +186,6 @@ public class MainActivity extends BaseActivity
     private void hideFragment(FragmentTransaction transaction) {
         if (newsFragment != null) {
             transaction.hide(newsFragment);
-        }
-        if (circleFragment != null) {
-            transaction.hide(circleFragment);
         }
         if (libraryFragment != null) {
             transaction.hide(libraryFragment);

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="terms">
+        <item>2014/2015(2)</item>
+        <item>2015/2016(1)</item>
+        <item>2015/2016(2)</item>
+        <item>2016/2017(1)</item>
+        <item>2016/2017(2)</item>
+        <item>2017/2018(1)</item>
+        <item>2017/2018(2)</item>
+        <item>2018/2019(1)</item>
+        <item>2018/2019(2)</item>
+    </string-array>
+
+    <string-array name="weekday">
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+        <item>星期日</item>
+    </string-array>
+
+    <string-array name="campus">
+        <item>朝晖校区</item>
+        <item>屏峰校区</item>
+    </string-array>
+</resources>
