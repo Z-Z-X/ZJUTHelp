@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.zjut.zjuthelp.Adapter.BorrowHistoryAdapter;
 import com.zjut.zjuthelp.Bean.Book;
+import com.zjut.zjuthelp.Bean.News;
 import com.zjut.zjuthelp.R;
 import com.zjut.zjuthelp.Web.ZJUTLibrary;
 
@@ -96,6 +98,22 @@ public class BorrowHistoryFragment extends Fragment {
         recyclerView = (ObservableRecyclerView) rootView.findViewById(R.id.borrow_history_list);
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                int visibleItemCount = mLayoutManager.getChildCount();
+                int totalItemCount = mLayoutManager.getItemCount();
+                int pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
+                if (loading && zjutLibrary.isHaveNextPage()) {
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                        // Load more news
+                        loading = false;
+                        progressBar.setVisibility(View.VISIBLE);
+                        new LoadBorrowHistory().execute(1);
+                    }
+                }
+            }
+        });
         // Load Borrow History
         new LoadBorrowHistory().execute(0);
         return rootView;
@@ -157,6 +175,8 @@ public class BorrowHistoryFragment extends Fragment {
             mode = params[0];
             if (mode == 0) {
                 bookList = zjutLibrary.getBorrowHistoryList();
+            } else {
+                bookList = zjutLibrary.getNextBorrowingHistoryList();
             }
             return 0;
         }
@@ -168,6 +188,11 @@ public class BorrowHistoryFragment extends Fragment {
                 list = bookList;
                 mAdapter = new BorrowHistoryAdapter(getActivity(), list);
                 recyclerView.setAdapter(mAdapter);
+            } else {
+                // Load more news
+                list.addAll(bookList);
+                loading = true;
+                mAdapter.notifyDataSetChanged();
             }
         }
     }

@@ -63,4 +63,16 @@ public class Book {
     public boolean getOverdue() {
         return isOverdue;
     }
+
+    public int getTotalDay() {
+        return 40;
+    }
+
+    public int getRestDay() {
+        return 12;
+    }
+
+    public int getProgress() {
+        return 360*getRestDay()/getTotalDay();
+    }
 }

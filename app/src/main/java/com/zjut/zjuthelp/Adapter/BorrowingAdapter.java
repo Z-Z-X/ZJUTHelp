@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.todddavies.components.progressbar.ProgressWheel;
 import com.zjut.zjuthelp.Bean.Book;
 import com.zjut.zjuthelp.R;
 
@@ -26,6 +27,7 @@ public class BorrowingAdapter extends RecyclerView.Adapter<BorrowingAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         Book book = mList.get(i);
+        viewHolder.pw.setProgress(book.getProgress());
         viewHolder.bookName.setText(book.getBookName());
         viewHolder.bookBorrowTime.setText("借书时间: " + book.getBookBorrowtime());
         viewHolder.bookReturnTime.setText("应还日期: " + book.getBookReturntime());
@@ -44,12 +46,14 @@ public class BorrowingAdapter extends RecyclerView.Adapter<BorrowingAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        private ProgressWheel pw;
         private TextView bookName;
         private TextView bookBorrowTime;
         private TextView bookReturnTime;
 
         public ViewHolder(View v) {
             super(v);
+            pw = (ProgressWheel) v.findViewById(R.id.progress_wheel);
             bookName = (TextView) v.findViewById(R.id.book_name);
             bookBorrowTime = (TextView) v.findViewById(R.id.book_borrow_time);
             bookReturnTime = (TextView) v.findViewById(R.id.book_return_time);

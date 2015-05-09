@@ -195,9 +195,7 @@ public class NewsListFragment extends Fragment {
                 recyclerView.setAdapter(mAdapter);
             } else {
                 // Load more news
-                for (News news: newsList) {
-                    list.add(news);
-                }
+                list.addAll(newsList);
                 loading = true;
                 mAdapter.notifyDataSetChanged();
             }

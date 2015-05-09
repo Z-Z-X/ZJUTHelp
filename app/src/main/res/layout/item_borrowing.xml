@@ -12,17 +12,18 @@
         android:layout_height="wrap_content">
 
         <com.todddavies.components.progressbar.ProgressWheel
-            xmlns:ProgressWheel="http://schemas.android.com/apk/res/com.visualdenim.schooltraq"
-            android:layout_width="72sp"
-            android:layout_height="72sp"
-            ProgressWheel:text="Authenticating..."
-            ProgressWheel:textColor="#222"
-            ProgressWheel:textSize="14sp"
-            ProgressWheel:rimColor="#330097D6"
+            xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/progress_wheel"
+            android:layout_width="64sp"
+            android:layout_height="64sp"
+            ProgressWheel:text="12"
+            ProgressWheel:textColor="@color/colorPrimaryDark"
+            ProgressWheel:textSize="24sp"
+            ProgressWheel:rimColor="@color/colorPrimary"
             ProgressWheel:barLength="60dp"
-            ProgressWheel:barColor="#0097D6"
-            ProgressWheel:barWidth="5dp"
-            ProgressWheel:rimWidth="2dp"/>
+            ProgressWheel:barColor="@color/colorPrimary"
+            ProgressWheel:barWidth="8dp"
+            ProgressWheel:rimWidth="1dp"/>
 
         <LinearLayout
             android:layout_marginStart="@dimen/card_content_padding"
