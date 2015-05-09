@@ -2,6 +2,55 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\jars\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-e92a8a06a14ac1f231b99801bc68a0e3fc29a580.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-f7deb07048434d1b2cd2ad4cc725ed1714ed7c5c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\libs\internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-7439018b2fa6142b09c93740ddf4c06a461a2fa0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.github.navasmdc\MaterialDesign\1.3\jars\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="72e9855052de681a5ff07d53ac5044d0274ae923">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-b3c838ad3b130b9ebe12cf248fa57fa4bbc611b9.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\jars\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-f8ac880c7c6424597b991c0953cab46822ba03f8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.0\jars\libs\internal_impl-21.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="5a8e01742aee890c56fe638ea7c921b91a3fdc62">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.0-e5cc631ac12ef23dae668c987cebd2fc2672afda.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="0c0c19759e5868604a3b4c2c0074ee9404d73c76">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-ed48ea1fb6c2f1c90d4cc9c4be5f97e83dfb4582.jar" />
+    </item>
+    <item
         jar="C:\Users\Zhang\Code\ZJUTHelp\app\libs\jsoup-1.8.1.jar"
         jumboMode="false"
         revision="20.0.0"
@@ -9,74 +58,18 @@
         <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\jsoup-1.8.1-691552b3710d2057eb677f279561c23080669620.jar" />
     </item>
     <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.0\libs\internal_impl-21.0.0.jar"
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.github.Todd-Davies\ProgressWheel\1.0\jars\classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="5a8e01742aee890c56fe638ea7c921b91a3fdc62">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.0-fb3b4508d040b243b0c63ebd3a5e8cb10e5fde57.jar" />
+        sha1="cd4cfa0bb408024dacf9392f87baa2ad9eb9a207">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-967142e3cc11cc368bd349a866d61ec0bbe2bad6.jar" />
     </item>
     <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jar="C:\Program Files\adt-bundle-windows-x86_64-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-5268831c24d6300487df66e42983d30654e911da.jar" />
-    </item>
-    <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-e963139d6008846c509d53510447214f7ce47eb3.jar" />
-    </item>
-    <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\libs\systembartint-1.0.4.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="06404f77b92ec723cc132e825afe85a07da85ee6">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\systembartint-1.0.4-41331521810ea8b028f1da61f998a98eca46f7e3.jar" />
-    </item>
-    <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\libs\selenium-java-2.45.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="5bd91f53611ff593cee5bd9dd04c71229a69b966">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\selenium-java-2.45.0-6119cad0c5cde0c49c26bfb68ed3a1ef48faeec9.jar" />
-    </item>
-    <item
-        jar="C:\Program Files\adt-bundle-windows-x86_64-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-7ddf422bf9eb2a77b32d3b618b7ad6a60a62373c.jar" />
-    </item>
-    <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.0\classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="0c0c19759e5868604a3b4c2c0074ee9404d73c76">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-5312814f8ca471d1cb00f36f2b36aaaf37d786fe.jar" />
-    </item>
-    <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\libs\umeng-analytics-v5.4.2.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="75ef4894b1489017838dc57dbe9a5782ab12c427">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\umeng-analytics-v5.4.2-fb3ab504bece9c161f5ea7fe0fb8cca2d6751ef5.jar" />
-    </item>
-    <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.github.navasmdc\MaterialDesign\1.3\classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="72e9855052de681a5ff07d53ac5044d0274ae923">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-9d6e408f0c685f6e7328ef8bd4b20525a43a9f4d.jar" />
-    </item>
-    <item
-        jar="C:\Users\Zhang\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\picasso-2.5.2-382b0754fabf66894c4a9864373f008650920b7d.jar" />
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-d0c79b7d24049d4b71877507648e33ae4b9a431f.jar" />
     </item>
     <item
         jar="C:\Users\Zhang\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
@@ -86,39 +79,46 @@
         <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\library-2.4.0-60eb8230c351d76810a756f852a5f49d9585b9b0.jar" />
     </item>
     <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-b4eebf683b71d527cc208eda4a9ee60d943a2990.jar" />
-    </item>
-    <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\classes.jar"
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.astuetz\pagerslidingtabstrip\1.0.1\jars\classes.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="7912610ed96381c25c36d986eba422731b9641b6">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-406a238f2c4f9155a73911e53d3240a74a79747a.jar" />
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-0b69f37c47c35ccd88a1902b3340c99676e2e4cc.jar" />
     </item>
     <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
+        jar="C:\Users\Zhang\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-542b2f315360c5b19fedd8341f460d9670d36815.jar" />
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\picasso-2.5.2-382b0754fabf66894c4a9864373f008650920b7d.jar" />
     </item>
     <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-a5d551d3a0d078d4477b3baf00c1634929ecaf6b.jar" />
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-26b498be2cf0a60f78a1422699a51ea2c83904e2.jar" />
     </item>
     <item
-        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.github.ksoichiro\android-observablescrollview\1.5.0\classes.jar"
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\exploded-aar\com.github.ksoichiro\android-observablescrollview\1.5.0\jars\classes.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="010ee9e87a286afcaeaed368dcf829e42d0aa2a0">
-        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-ec49137758d9e51ab18812606f1fe9a28fbc84f9.jar" />
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\classes-0dde85c173295207f438f2de526dca875c1fc49f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\libs\systembartint-1.0.4.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="06404f77b92ec723cc132e825afe85a07da85ee6">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\systembartint-1.0.4-41331521810ea8b028f1da61f998a98eca46f7e3.jar" />
+    </item>
+    <item
+        jar="C:\Users\Zhang\Code\ZJUTHelp\app\libs\umeng-analytics-v5.4.2.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="75ef4894b1489017838dc57dbe9a5782ab12c427">
+        <dex dex="C:\Users\Zhang\Code\ZJUTHelp\app\build\intermediates\pre-dexed\debug\umeng-analytics-v5.4.2-fb3ab504bece9c161f5ea7fe0fb8cca2d6751ef5.jar" />
     </item>
 
 </items>
