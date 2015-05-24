@@ -66,10 +66,12 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         addPreferencesFromResource(R.xml.pref_settings);
         // Show student ID
         editId = (EditTextPreference) findPreference("student_id_preference");
-        editId.setSummary(editId.getText());
+        if (editId.getText() != null) {
+            editId.setSummary(editId.getText());
+        }
         // Show library password
         editLibraryPassword = (EditTextPreference) findPreference("library_password_preference");
-        if (!editLibraryPassword.getText().equals("")) {
+        if (editLibraryPassword.getText() != null) {
             int passwordLen = editLibraryPassword.getText().length();
             String mask = "";
             for (int i = 0; i < passwordLen; i++) {
@@ -79,7 +81,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         }
         // Show version code
         editTeachingAffairsPassword = (EditTextPreference) findPreference("teaching_affairs_password_preference");
-        if (!editTeachingAffairsPassword.getText().equals("")) {
+        if (editTeachingAffairsPassword.getText() != null) {
             int passwordLen = editTeachingAffairsPassword.getText().length();
             String mask = "";
             for (int i = 0; i < passwordLen; i++) {

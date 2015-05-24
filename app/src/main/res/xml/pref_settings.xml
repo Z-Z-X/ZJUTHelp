@@ -6,7 +6,7 @@
         <EditTextPreference
             android:key="student_id_preference"
             android:title="@string/student_id"
-            android:summary="@string/student_id"
+            android:summary="@string/edit_student_id"
             android:dialogTitle="@string/edit_student_id" />
         <EditTextPreference
             android:key="library_password_preference"
