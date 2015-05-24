@@ -1,14 +1,18 @@
 package com.zjut.zjuthelp.Fragments;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.PreferenceManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.zjut.zjuthelp.Adapter.BorrowHistoryAdapter;
@@ -32,10 +36,14 @@ public class BorrowingFragment extends Fragment {
     private boolean loading = true;
     // Recycler view
     private ObservableRecyclerView recyclerView;
+    // SwipeRefreshLayout
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     // Adapter for recycler view
     private BorrowingAdapter mAdapter;
     // Progress bar
     private View progressBar;
+    // Msg Text
+    private TextView msgText;
     // Book List
     private List<Book> list;
     // Book List Getter
@@ -82,7 +90,10 @@ public class BorrowingFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         // Init the book list getter
-        zjutLibrary = new ZJUTLibrary("201408280527", "201408280527");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String userid = preferences.getString("student_id_preference", null);
+        String password = preferences.getString("library_password_preference" , null);
+        zjutLibrary = new ZJUTLibrary(userid, password);
     }
 
     @Override
@@ -92,12 +103,26 @@ public class BorrowingFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_borrowing, container, false);
         // Init the progress bar
         progressBar = rootView.findViewById(R.id.progressBar);
+        // Init swipe refresh layout
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new LoadBorrowing().execute();
+            }
+        });
+        // Init msg text
+        msgText = (TextView) rootView.findViewById(R.id.msg);
         // Init recycler view
         recyclerView = (ObservableRecyclerView) rootView.findViewById(R.id.borrowing_list);
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         // Load Borrow History
-        new LoadBorrowHistory().execute();
+        new LoadBorrowing().execute();
         return rootView;
     }
 
@@ -140,7 +165,7 @@ public class BorrowingFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    class LoadBorrowHistory extends AsyncTask<Void, Integer, Integer> {
+    class LoadBorrowing extends AsyncTask<Void, Integer, Integer> {
         // Book List
         private List<Book> bookList;
         // Do before execute
@@ -158,9 +183,15 @@ public class BorrowingFragment extends Fragment {
         @Override
         protected void onPostExecute(Integer integer) {
             progressBar.setVisibility(View.GONE);
-            list = bookList;
-            mAdapter = new BorrowingAdapter(getActivity(), list);
-            recyclerView.setAdapter(mAdapter);
+            if (bookList != null) {
+                list = bookList;
+                mAdapter = new BorrowingAdapter(getActivity(), list);
+                recyclerView.setAdapter(mAdapter);
+            } else {
+                msgText.setText(zjutLibrary.getMsg());
+                msgText.setVisibility(View.VISIBLE);
+            }
+            mSwipeRefreshLayout.setRefreshing(false);
         }
     }
 

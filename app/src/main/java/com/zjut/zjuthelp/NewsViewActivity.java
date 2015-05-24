@@ -6,10 +6,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -30,25 +28,24 @@ public class NewsViewActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_view);
 
-        //获取目标URL
+        // Get target url
         Intent intent = getIntent();
         url = intent.getStringExtra("url");
 
-        //修改状态栏颜色
+        // Change the color of systembar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
             tintManager.setTintResource(R.color.colorPrimaryDark);
         }
 
-        // 初始化进度条
-        progressBar = (View) findViewById(R.id.progressBar);
+        // Init progressbar
+        progressBar = findViewById(R.id.progressBar);
 
-        //初始化工具栏
+        // Init toolbar
         Toolbar toolbar = (Toolbar)findViewById(R.id.news_view_toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

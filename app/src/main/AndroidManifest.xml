@@ -26,13 +26,18 @@
 
         <meta-data
             android:name="5504e89cfd98c5ca3f0003f0"
-            android:value="YOUR_APP_KEY" />
+            android:value="UMENG_APPKEY" />
         <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="BaiduD" />
+            android:name="SELF_UPDATE_VERSION"
+            android:value="UMENG_CHANNEL" />
+
         <activity
             android:name=".NewsViewActivity"
             android:label="@string/title_activity_news_view" >
+        </activity>
+        <activity
+            android:name=".LicenseActivity"
+            android:label="@string/title_activity_license" >
         </activity>
     </application>
 

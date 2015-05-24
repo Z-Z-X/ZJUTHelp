@@ -8,7 +8,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +27,7 @@ public class ZJUTLibrary {
     private String studentID;
     // Password
     private String password;
+    private String msg;
     // Response
     private Connection.Response response;
     // Inputs
@@ -40,18 +44,19 @@ public class ZJUTLibrary {
 
     public List<Book> getBorrowingList() {
         List<Book> list = new ArrayList<>();
-        String str = "NO";
-
         try {
             // Login
-            String login = LOGIN_URL + "?kind=1&userid=" + studentID + "&password=" + password + "&submit=%B5%C7%C2%BD";
-            response = Jsoup.connect(login)
-                    .execute();
-            Document doc = Jsoup.connect(BORROWING_URL)
+            msg = login();
+            if (!msg.equals("OK")) {
+                return null;
+            }
+            // Connection
+            doc = Jsoup.connect(BORROWING_URL)
                     .cookies(response.cookies())
                     .get();
             // Get first page
             list = parseBorrowing(doc);
+
             // Get inputs
             map.put("__VIEWSTATE", doc.select("input[name=__VIEWSTATE]").first().attr("value"));
             map.put("__EVENTVALIDATION", doc.select("input[name=__EVENTVALIDATION]").first().attr("value"));
@@ -59,7 +64,7 @@ public class ZJUTLibrary {
             // Get next page
             Elements nextButton = doc.select("input[alt=>]");
             if (nextButton.size() == 1) {
-                // Edit parms
+                // Edit prams
                 Map<String, String> prams = new HashMap<>();
                 prams.put("ctl00$ScriptManager1", "ctl00$ContentPlaceHolder1$UpdatePanel1|ctl00$ContentPlaceHolder1$GridView1");
                 prams.put("__EVENTTARGET", "ctl00$ContentPlaceHolder1$GridView1");
@@ -74,46 +79,29 @@ public class ZJUTLibrary {
                 prams.put("__EVENTVALIDATION", map.get("__EVENTVALIDATION"));
                 prams.put("__ASYNCPOST", "true");
                 prams.put("", "");
-                /*byte[] data = HttpConnectionHelper.getRequestData(prams, "utf-8").toString().getBytes();
+                byte[] data = WebTools.getRequestData(prams, "utf-8").toString().getBytes();
                 // Post request
                 URL url = new URL(BORROWING_URL);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
                 connection.setRequestMethod("POST");
-                connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36");
+                connection.setRequestProperty("Cookie", "ASP.NET_SessionId=" + response.cookie("ASP.NET_SessionId"));
+                connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
                 connection.setRequestProperty("Content-Length", String.valueOf(data.length));
                 OutputStream outputStream = connection.getOutputStream();
                 outputStream.write(data);
                 // Get Response
-                int response = connection.getResponseCode();
-                if (response == HttpURLConnection.HTTP_OK) {
+                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     InputStream inputStream = connection.getInputStream();
-                    String html = HttpConnectionHelper.dealResponseResult(inputStream);
-
-                    Document nextPage = Jsoup.parse(html);
-                    str = nextPage.title();
-                    //list.addAll(parseBorrowing(nextPage));
-                }*/
-                /*Connection.Response test = Jsoup.connect(BORROWING_URL)
-                        .cookies(response.cookies())
-                        .data(prams)
-                        .method(Connection.Method.POST)
-                        .execute();*/
-                str = "OK";
+                    String html = WebTools.dealResponseResult(inputStream);
+                    list.addAll(parseBorrowing(Jsoup.parse(html)));
+                }
             }
         } catch (Exception e) {
-            str = "ERROR";
             e.printStackTrace();
         }
-
-        /* Code for test */
-        Book book1 = new Book();
-        book1.setBookName(str);
-        book1.setBookBorrowtime(map.get("__EVENTVALIDATION"));
-        book1.setBookReturntime(map.get("__VIEWSTATE"));
-        list.add(book1);
-
         return list;
     }
 
@@ -123,7 +111,7 @@ public class ZJUTLibrary {
 
     private List<Book> parseBorrowing(Document doc) {
         ArrayList<Book> list = new ArrayList<>();
-        Element table = doc.select("table[id=ctl00_ContentPlaceHolder1_GridView1]").first();
+        Element table = doc.select("table[id~=ctl00_ContentPlaceHolder1_GridView.]").first();
         Elements tabs = table.select("table[style~=^border-style]");
         for (Element tab : tabs) {
             Book book = new Book();
@@ -146,9 +134,10 @@ public class ZJUTLibrary {
         String str = "NO";
         try {
             // Login
-            String login = LOGIN_URL + "?kind=1&userid=" + studentID + "&password=" + password + "&submit=%B5%C7%C2%BD";
-            response = Jsoup.connect(login)
-                    .execute();
+            msg = login();
+            if (!msg.equals("OK")) {
+                return null;
+            }
             // Connection
             doc = Jsoup.connect(BORROW_HISTORY_URL)
                     .cookies(response.cookies())
@@ -222,5 +211,28 @@ public class ZJUTLibrary {
     // Is have next page
     public boolean isHaveNextPage() {
         return haveNextPage;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    // Login
+    public String login() {
+        try {
+            // Login
+            String login = LOGIN_URL + "?kind=1&userid=" + studentID + "&password=" + password + "&submit=%B5%C7%C2%BD";
+            response = Jsoup.connect(login)
+                    .execute();
+            // Get msg
+            Document doc = response.parse();
+            Elements elements = doc.select("span[id=Label1]");
+            if (elements.size() == 1) {
+                return "用户名或密码错误";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "OK";
     }
 }

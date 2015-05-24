@@ -4,7 +4,6 @@ import com.zjut.zjuthelp.Bean.Subject;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.jsoup.Connection;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -18,11 +17,9 @@ public class ZJUTTeachingAffairs {
     public static String GRADE_QUERY_URL = "http://api.zjut.com/student/scores.php";
     public static String ROOM_FREE_QUERY_URL = "http://help.izjut.com/plugs/classroom/classroom.php";
 
-    private String __VIEWSTATE;
-
     private String studentID;
     private String password;
-    private Connection.Response response;
+    private String msg;
 
     public ZJUTTeachingAffairs(String id, String pw) {
         studentID = id;
@@ -33,7 +30,7 @@ public class ZJUTTeachingAffairs {
         ArrayList<Subject> list = new ArrayList<>();
         try {
             // Get JSON
-            URL url = new URL(GRADE_QUERY_URL + "?username=" + studentID + "&password=" + password + "&term");
+            URL url = new URL(GRADE_QUERY_URL + "?username=" + studentID + "&password=" + password + "&term=2014%2F2015(1)");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             InputStreamReader in =  new InputStreamReader(connection.getInputStream());
             BufferedReader bufferedReader = new BufferedReader(in);
@@ -45,6 +42,15 @@ public class ZJUTTeachingAffairs {
             String json = strBuffer.toString();
             // Parse JSON
             JSONObject jo = new JSONObject(json);
+            // Get msg
+            String status = jo.getString("status");
+            if (status.equals("error")) {
+                msg = jo.getString("msg");
+                return null;
+            } else {
+                msg = "OK";
+            }
+            // Get subjects
             JSONArray ja = jo.getJSONArray("msg");
             for (int i = 0; i < ja.length(); ++i) {
                 JSONObject obj = ja.getJSONObject(i);
@@ -61,5 +67,17 @@ public class ZJUTTeachingAffairs {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public String login() {
+        getGrades();
+        if (msg.equals("用户名或密码错误")) {
+            return msg;
+        }
+        return "OK";
     }
 }

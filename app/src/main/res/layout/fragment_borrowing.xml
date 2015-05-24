@@ -4,10 +4,17 @@
     tools:context="com.zjut.zjuthelp.Fragments.BorrowingFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
-        android:id="@+id/borrowing_list"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
+            android:id="@+id/borrowing_list"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
         android:id="@+id/progressBar"
@@ -15,5 +22,13 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:background="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/msg"
+        android:visibility="invisible"
+        android:textSize="@dimen/abc_text_size_large_material"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

@@ -1,14 +1,19 @@
 package com.zjut.zjuthelp.Fragments;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.PreferenceManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.zjut.zjuthelp.Adapter.SubjectAdapter;
@@ -33,8 +38,12 @@ public class GradeQueryFragment extends Fragment {
     private ObservableRecyclerView recyclerView;
     // Adapter for recycler view
     private SubjectAdapter mAdapter;
+    // SwipeRefreshLayout
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     // Progress bar
     private View progressBar;
+    // Msg Text
+    private TextView msgText;
     // Subject list
     private List<Subject> mList;
     // ZJUT Teaching Affairs
@@ -80,7 +89,10 @@ public class GradeQueryFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        zjutTeachingAffairs = new ZJUTTeachingAffairs("201426811427","zh10086");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String userid = preferences.getString("student_id_preference", null);
+        String password = preferences.getString("teaching_affairs_password_preference", null);
+        zjutTeachingAffairs = new ZJUTTeachingAffairs(userid, password);
     }
 
     @Override
@@ -88,8 +100,22 @@ public class GradeQueryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_grade_query, container, false);
+        // Init swipe refresh layout
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new LoadGrade().execute();
+            }
+        });
         // Init the progress bar
         progressBar = rootView.findViewById(R.id.progressBar);
+        // Init msg text
+        msgText = (TextView) rootView.findViewById(R.id.msg);
         // Init recycler view
         recyclerView = (ObservableRecyclerView) rootView.findViewById(R.id.subject_list);
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -153,9 +179,15 @@ public class GradeQueryFragment extends Fragment {
         @Override
         protected void onPostExecute(Integer integer) {
             progressBar.setVisibility(View.GONE);
-            mList = list;
-            mAdapter = new SubjectAdapter(getActivity(), mList);
-            recyclerView.setAdapter(mAdapter);
+            if (list != null) {
+                mList = list;
+                mAdapter = new SubjectAdapter(getActivity(), mList);
+                recyclerView.setAdapter(mAdapter);
+            } else {
+                msgText.setText(zjutTeachingAffairs.getMsg());
+                msgText.setVisibility(View.VISIBLE);
+            }
+            mSwipeRefreshLayout.setRefreshing(false);
         }
     }
 

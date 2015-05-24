@@ -14,19 +14,16 @@ import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFlat;
 import com.zjut.zjuthelp.R;
-import com.zjut.zjuthelp.Web.HttpConnectionHelper;
+import com.zjut.zjuthelp.Web.WebTools;
 import com.zjut.zjuthelp.Web.ZJUTTeachingAffairs;
 
 
-import org.apache.http.HttpConnection;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -206,7 +203,7 @@ public class RoomFreeQueryFragment extends Fragment {
                 httpParams.put("jsj", sprEnd.getSelectedItem().toString());
                 httpParams.put("xingqi", sprDay.getSelectedItem().toString());
                 httpParams.put("xiaoqu", sprCampus.getSelectedItem().toString());
-                byte[] data = HttpConnectionHelper.getRequestData(httpParams, "utf-8").toString().getBytes();
+                byte[] data = WebTools.getRequestData(httpParams, "utf-8").toString().getBytes();
                 // Post request
                 URL url = new URL(ZJUTTeachingAffairs.ROOM_FREE_QUERY_URL);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -221,7 +218,7 @@ public class RoomFreeQueryFragment extends Fragment {
                 int response = connection.getResponseCode();
                 if (response == HttpURLConnection.HTTP_OK) {
                     InputStream inputStream = connection.getInputStream();
-                    json = HttpConnectionHelper.dealResponseResult(inputStream);
+                    json = WebTools.dealResponseResult(inputStream);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

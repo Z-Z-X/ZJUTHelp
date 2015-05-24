@@ -1,18 +1,15 @@
 package com.zjut.zjuthelp.Fragments;
 
 import android.app.Activity;
-import android.app.Application;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceScreen;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
+import com.zjut.zjuthelp.LicenseActivity;
 import com.zjut.zjuthelp.R;
 
 /**
@@ -23,7 +20,7 @@ import com.zjut.zjuthelp.R;
  * Use the {@link SettingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SettingsFragment extends PreferenceFragment {
+public class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
     private EditTextPreference editId;
     private EditTextPreference editLibraryPassword;
@@ -66,23 +63,47 @@ public class SettingsFragment extends PreferenceFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Load the preferences from an XML resource
-        addPreferencesFromResource(R.xml.pre_settings);
+        addPreferencesFromResource(R.xml.pref_settings);
         // Show student ID
         editId = (EditTextPreference) findPreference("student_id_preference");
         editId.setSummary(editId.getText());
         // Show library password
-        //editLibraryPassword = (EditTextPreference) findPreference("library_password_preference");
-        //int passwordLen = editLibraryPassword.getText().length();
+        editLibraryPassword = (EditTextPreference) findPreference("library_password_preference");
+        if (!editLibraryPassword.getText().equals("")) {
+            int passwordLen = editLibraryPassword.getText().length();
+            String mask = "";
+            for (int i = 0; i < passwordLen; i++) {
+                mask += "*";
+            };
+            editLibraryPassword.setSummary(mask);
+        }
         // Show version code
-        //editTeachingAffairsPassword = (EditTextPreference) findPreference("teaching_affairs_password_preference");
-        //passwordLen = editTeachingAffairsPassword.getText().length();
+        editTeachingAffairsPassword = (EditTextPreference) findPreference("teaching_affairs_password_preference");
+        if (!editTeachingAffairsPassword.getText().equals("")) {
+            int passwordLen = editTeachingAffairsPassword.getText().length();
+            String mask = "";
+            for (int i = 0; i < passwordLen; i++) {
+                mask += "*";
+            }
+            editTeachingAffairsPassword.setSummary(mask);
+        }
         // Show version code
-        Preference version = (Preference) findPreference("version_code");
+        Preference version = findPreference("version_code");
         try {
             version.setSummary(getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(),0).versionName);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // Show open source license
+        Preference openSourceLicense = findPreference("open_source_licence");
+        openSourceLicense.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), LicenseActivity.class);
+                startActivity(intent);
+                return false;
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -125,13 +146,12 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
         String key = preference.getKey();
         if (key.equals("student_id_preference")){
             editId.setSummary(editId.getText());
         }
-
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+        return true;
     }
 
 }

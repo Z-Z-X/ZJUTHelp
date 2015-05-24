@@ -8,6 +8,7 @@
     <string name="close">关闭</string>
 
     <string name="home_page">主页</string>
+    <string name="not_bind">未绑定</string>
     <string name="news">资讯</string>
     <string name="notification">校内通知</string>
     <string name="zjuter">工大人</string>
@@ -37,6 +38,7 @@
     <string name="edit_teaching_affairs_password">编辑教务系统密码</string>
     <string name="about">关于</string>
     <string name="open_source_licence">开源许可协议</string>
+    <string name="thanks">鸣谢</string>
     <string name="version_code">版本号</string>
 
 <!-- TODO: Remove or change this placeholder text -->
@@ -44,4 +46,5 @@
     <string name="title_activity_main_activity2">MainActivity2Activity</string>
     <string name="title_activity_event_view">EventViewActivity</string>
     <string name="title_activity_news_view">正在加载</string>
+    <string name="title_activity_license">LicenseActivity</string>
 </resources>
