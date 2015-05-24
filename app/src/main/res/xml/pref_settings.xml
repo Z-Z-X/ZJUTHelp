@@ -28,6 +28,9 @@
             android:key="open_source_licence"
             android:title="@string/open_source_licence"/>
         <Preference
+            android:key="check_update"
+            android:title="@string/check_update"/>
+        <Preference
             android:key="version_code"
             android:summary="0.0.0.0"
             android:title="@string/version_code"/>

@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.update.UmengUpdateAgent;
 import com.zjut.zjuthelp.Fragments.BorrowingFragment;
 import com.zjut.zjuthelp.Fragments.GradeQueryFragment;
 import com.zjut.zjuthelp.Fragments.BorrowHistoryFragment;
@@ -74,6 +76,7 @@ public class MainActivity extends BaseActivity
         // Umeng
         MobclickAgent.updateOnlineConfig(this);
         AnalyticsConfig.enableEncrypt(true);
+        UmengUpdateAgent.update(this);
 
         // Chang the color of system bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

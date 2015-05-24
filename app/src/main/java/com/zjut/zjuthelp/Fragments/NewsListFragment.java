@@ -1,6 +1,6 @@
 package com.zjut.zjuthelp.Fragments;
 
-import android.support.v7.app.ActionBar;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -9,6 +9,7 @@ import android.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,17 +105,34 @@ public class NewsListFragment extends Fragment {
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                int visibleItemCount  = mLayoutManager.getChildCount();
+                int visibleItemCount = mLayoutManager.getChildCount();
                 int totalItemCount = mLayoutManager.getItemCount();
                 int pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
                 if (loading) {
-                    if ( (visibleItemCount+pastVisiblesItems) >= totalItemCount) {
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
                         // Load more news
                         loading = false;
                         progressBar.setVisibility(View.VISIBLE);
                         new LoadNews().execute(1);
                     }
                 }
+            }
+        });
+        // Immersive view
+        recyclerView.setScrollViewCallbacks(new ObservableScrollViewCallbacks() {
+            @Override
+            public void onScrollChanged(int i, boolean b, boolean b1) {
+
+            }
+
+            @Override
+            public void onDownMotionEvent() {
+
+            }
+
+            @Override
+            public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+
             }
         });
         // Start async task

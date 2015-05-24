@@ -9,6 +9,7 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
+import com.umeng.update.UmengUpdateAgent;
 import com.zjut.zjuthelp.LicenseActivity;
 import com.zjut.zjuthelp.R;
 
@@ -96,6 +97,15 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // Check update
+        Preference update = findPreference("check_update");
+        update.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                UmengUpdateAgent.forceUpdate(getActivity());
+                return false;
+            }
+        });
         // Show open source license
         Preference openSourceLicense = findPreference("open_source_licence");
         openSourceLicense.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
