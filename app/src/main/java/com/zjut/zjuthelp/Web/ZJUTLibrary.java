@@ -1,5 +1,7 @@
 package com.zjut.zjuthelp.Web;
 
+import android.content.Context;
+
 import com.zjut.zjuthelp.Bean.Book;
 
 import org.jsoup.Connection;
@@ -36,8 +38,11 @@ public class ZJUTLibrary {
     private boolean haveNextPage = false;
     // Document
     private Document doc;
+    // Context
+    private Context mContext;
 
-    public ZJUTLibrary(String id, String pw) {
+    public ZJUTLibrary(Context context, String id, String pw) {
+        mContext = context;
         studentID = id;
         password = pw;
     }
@@ -219,6 +224,10 @@ public class ZJUTLibrary {
 
     // Login
     public String login() {
+        // Check Networking
+        if (!WebTools.isNetworkAvailable(mContext)) {
+            return  "无网络连接";
+        }
         try {
             // Login
             String login = LOGIN_URL + "?kind=1&userid=" + studentID + "&password=" + password + "&submit=%B5%C7%C2%BD";
@@ -228,7 +237,7 @@ public class ZJUTLibrary {
             Document doc = response.parse();
             Elements elements = doc.select("span[id=Label1]");
             if (elements.size() == 1) {
-                return "用户名或密码错误";
+                return  "用户名或密码错误";
             }
         } catch (Exception e) {
             e.printStackTrace();

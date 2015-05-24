@@ -1,5 +1,7 @@
 package com.zjut.zjuthelp.Web;
 
+import android.content.Context;
+
 import com.zjut.zjuthelp.Bean.Subject;
 
 import org.json.JSONArray;
@@ -17,16 +19,22 @@ public class ZJUTTeachingAffairs {
     public static String GRADE_QUERY_URL = "http://api.zjut.com/student/scores.php";
     public static String ROOM_FREE_QUERY_URL = "http://help.izjut.com/plugs/classroom/classroom.php";
 
+    private Context mContext;
     private String studentID;
     private String password;
     private String msg;
 
-    public ZJUTTeachingAffairs(String id, String pw) {
+    public ZJUTTeachingAffairs(Context context, String id, String pw) {
+        mContext = context;
         studentID = id;
         password = pw;
     }
 
     public List<Subject> getGrades() {
+        // Check Networking
+        if (!WebTools.isNetworkAvailable(mContext)) {
+            msg = "无网络连接";
+        }
         ArrayList<Subject> list = new ArrayList<>();
         try {
             // Get JSON

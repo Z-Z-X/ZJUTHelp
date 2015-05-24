@@ -96,7 +96,7 @@ public class BorrowHistoryFragment extends Fragment {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String userid = preferences.getString("student_id_preference", null);
         String password = preferences.getString("library_password_preference" ,null);
-        zjutLibrary = new ZJUTLibrary(userid, password);
+        zjutLibrary = new ZJUTLibrary(getActivity(), userid, password);
     }
 
     @Override

@@ -92,7 +92,7 @@ public class GradeQueryFragment extends Fragment {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String userid = preferences.getString("student_id_preference", null);
         String password = preferences.getString("teaching_affairs_password_preference", null);
-        zjutTeachingAffairs = new ZJUTTeachingAffairs(userid, password);
+        zjutTeachingAffairs = new ZJUTTeachingAffairs(getActivity(), userid, password);
     }
 
     @Override

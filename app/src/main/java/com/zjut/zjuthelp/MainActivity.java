@@ -239,8 +239,8 @@ public class MainActivity extends BaseActivity
             String userid = preferences.getString("student_id_preference", null);
             String libPasswrd = preferences.getString("library_password_preference", null);
             String tasPassword = preferences.getString("teaching_affairs_password_preference", null);
-            ZJUTLibrary zjutLibrary = new ZJUTLibrary(userid, libPasswrd);
-            ZJUTTeachingAffairs zjutTeachingAffairs = new ZJUTTeachingAffairs(userid, tasPassword);
+            ZJUTLibrary zjutLibrary = new ZJUTLibrary(MainActivity.this, userid, libPasswrd);
+            ZJUTTeachingAffairs zjutTeachingAffairs = new ZJUTTeachingAffairs(MainActivity.this, userid, tasPassword);
             boolean libStatus = zjutLibrary.login().equals("OK");
             boolean tasStatus = zjutTeachingAffairs.login().equals("OK");
             if (libStatus && tasStatus) {
