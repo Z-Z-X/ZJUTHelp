@@ -6,6 +6,12 @@ Author:     Xavier
 Function:   Book object
 */
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+
 public class Book {
     
     private String bookName;
@@ -15,6 +21,8 @@ public class Book {
     private String bookBorrowtime;
     private String bookReturntime;
     private boolean isOverdue;
+    private String timenow;
+
 
     public void setBookName(String name) {
         bookName = name;
@@ -64,13 +72,41 @@ public class Book {
         return isOverdue;
     }
 
+
+    public static int daysBetween(String smdate,String bdate) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(sdf.parse(smdate));
+        long time1 = cal.getTimeInMillis();
+        cal.setTime(sdf.parse(bdate));
+        long time2 = cal.getTimeInMillis();
+        long between_days = (time2 - time1) / (1000 * 3600 * 24);
+
+        return Integer.parseInt(String.valueOf(between_days));
+    }
+
     public int getTotalDay() {
         return 40;
     }
 
     public int getRestDay() {
-        return 12;
+        String timenow;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+        Date now = new Date();
+        timenow = sdf.format( now );
+        //timenow=(sdf.format(new Date()));// new Date()为获取当前系统时间;
+        int rest=20;
+        try
+        {
+            rest=daysBetween(timenow,bookReturntime);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return rest;
     }
+
 
     public int getProgress() {
         return 360*getRestDay()/getTotalDay();
